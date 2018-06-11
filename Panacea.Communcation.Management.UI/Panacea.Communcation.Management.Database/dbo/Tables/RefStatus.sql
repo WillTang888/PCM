@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[RefStatus]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Description] VARCHAR(MAX) NOT NULL
+)
