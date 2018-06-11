@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2002
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panacea.Communcation.Management.UI", "Panacea.Communcation.Management.UI\Panacea.Communcation.Management.UI.csproj", "{3E86E383-D70C-49E9-A0C8-95943E4534AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Panacea.Communcation.Management.UI.Tests", "Panacea.Communcation.Management.UI.Tests\Panacea.Communcation.Management.UI.Tests.csproj", "{54F496CB-A78D-4F98-B38D-6542856205E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3E86E383-D70C-49E9-A0C8-95943E4534AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E86E383-D70C-49E9-A0C8-95943E4534AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E86E383-D70C-49E9-A0C8-95943E4534AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E86E383-D70C-49E9-A0C8-95943E4534AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54F496CB-A78D-4F98-B38D-6542856205E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54F496CB-A78D-4F98-B38D-6542856205E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54F496CB-A78D-4F98-B38D-6542856205E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54F496CB-A78D-4F98-B38D-6542856205E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6344DD30-4995-4D1E-B6F8-CE84D164E6D1}
+	EndGlobalSection
+EndGlobal
