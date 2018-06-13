@@ -14,6 +14,11 @@
         <AssociationConnector Association="PCMModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="PCMModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="PCMModel.AspNetUserRoles" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="PCMModel.Contacts" Width="1.5" PointX="7.25" PointY="8.5" />
+        <EntityTypeShape EntityType="PCMModel.Organisations" Width="1.5" PointX="5" PointY="11.25" />
+        <AssociationConnector Association="PCMModel.FK_Contacts_Organisations" />
+        <AssociationConnector Association="PCMModel.FK_Contacts_RefStatus" />
+        <AssociationConnector Association="PCMModel.FK_Organisations_RefStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

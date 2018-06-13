@@ -5,22 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Panacea.Communcation.Management.Business.UnitOfWork
+namespace Panacea.Communcation.Management.Business
 {
     public class UnitOfWork : IDisposable
     {
         private PCMEntities context = new PCMEntities();
+
+        private GenericRepository<Contacts> contactRepository;
+        private GenericRepository<Organisations> organisationRepository;
         private GenericRepository<RefStatus> refStatusRepository;
 
-        public GenericRepository<RefStatus> RefStatusRepository
-        {
-            get
-            {
-                return this.refStatusRepository ?? new GenericRepository<RefStatus>(context);
-            }
-        }
+        public GenericRepository<Contacts> ContactRepository => this.contactRepository ?? new GenericRepository<Contacts>(context);
+        public GenericRepository<Organisations> OrganisationRepository => this.organisationRepository ?? new GenericRepository<Organisations>(context);
+        public GenericRepository<RefStatus> RefStatusRepository => this.refStatusRepository ?? new GenericRepository<RefStatus>(context);
 
-      
+
         public void Save()
         {
             context.SaveChanges();

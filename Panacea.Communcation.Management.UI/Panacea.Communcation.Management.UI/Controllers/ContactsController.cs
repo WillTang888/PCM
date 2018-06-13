@@ -6,26 +6,21 @@ using System.Web.Mvc;
 
 namespace Panacea.Communcation.Management.UI.Controllers
 {
-
-    [Authorize]
-    public class HomeController : Controller
+    public class ContactsController : Controller
     {
-        public ActionResult Index()
+
+        public ActionResult Contacts()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Organisations()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-  
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
 
+        public ActionResult Groups()
+        {
             return View();
         }
     }

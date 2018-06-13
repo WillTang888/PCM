@@ -31,5 +31,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<RefStatus> RefStatus { get; set; }
+        public virtual DbSet<Contacts> Contacts { get; set; }
+        public virtual DbSet<Organisations> Organisations { get; set; }
     }
 }

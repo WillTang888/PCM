@@ -12,21 +12,29 @@ namespace Panacea.Communcation.Management.Business.EFModels
     using System;
     using System.Collections.Generic;
     
-    public partial class RefStatus
+    public partial class Organisations
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RefStatus()
+        public Organisations()
         {
             this.Contacts = new HashSet<Contacts>();
-            this.Organisations = new HashSet<Organisations>();
         }
     
         public int Id { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
+        public string City { get; set; }
+        public string County { get; set; }
+        public string Postcode { get; set; }
+        public Nullable<int> Country { get; set; }
+        public int FkRefStatusId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contacts> Contacts { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Organisations> Organisations { get; set; }
+        public virtual RefStatus RefStatus { get; set; }
     }
 }

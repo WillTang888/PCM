@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Panacea.Communcation.Management.Business.UnitOfWork
+namespace Panacea.Communcation.Management.Business
 {
     public class GenericRepository<TEntity> where TEntity : class
     {

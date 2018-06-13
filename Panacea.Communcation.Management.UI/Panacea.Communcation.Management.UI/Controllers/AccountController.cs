@@ -449,7 +449,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Dashboard_2", "Dashboards");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

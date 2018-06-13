@@ -71,11 +71,16 @@
     <Build Include="dbo\Tables\AspNetUserLogins.sql" />
     <Build Include="dbo\Tables\__MigrationHistory.sql" />
     <Build Include="dbo\Tables\RefStatus.sql" />
+    <Build Include="dbo\Tables\Contacts.sql" />
+    <Build Include="dbo\Tables\Organisations.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Panacea.Communcation.Management.Database.Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\Scripts\PostDeployment1.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="Panacea.Communcation.Management.Database.refactorlog" />
   </ItemGroup>
 </Project>
