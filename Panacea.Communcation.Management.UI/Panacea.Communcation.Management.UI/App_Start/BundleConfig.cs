@@ -198,8 +198,8 @@ namespace Panacea.Communcation.Management.UI
 
             // chosen styles
             bundles.Add(new StyleBundle("~/Content/plugins/chosen/chosenStyles").Include(
-                "~/Content/plugins/chosen/chosen.css"));
-            //"~/Content/plugins/chosen/bootstrap-chosen.css"));
+              //  "~/Content/plugins/chosen/chosen.css"));
+            "~/Content/plugins/chosen/bootstrap-chosen.css"));
 
             // chosen 
             bundles.Add(new ScriptBundle("~/plugins/chosen").Include(
@@ -460,8 +460,8 @@ namespace Panacea.Communcation.Management.UI
                 "~/Scripts/plugins/pwstrength/zxcvbn.js"));
 
             // Chosen
-            // bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-            //    "~/Scripts/Custom/CustomConfiguration.js"));
+            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+               "~/Scripts/Custom/CustomConfiguration.js"));
         }
 
 
