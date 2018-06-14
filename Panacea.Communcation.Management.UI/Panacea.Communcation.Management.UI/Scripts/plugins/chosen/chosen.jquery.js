@@ -448,10 +448,15 @@
             }), 50);
         };
 
-        AbstractChosen.prototype.container_width = function() {
+        AbstractChosen.prototype.container_width = function () {
             if (this.options.width != null) {
                 return this.options.width;
             } else {
+
+                if (this.form_field.offsetWidth == 0) {
+                    return "" + $(this.form_field).width() + "px";
+                }
+
                 return "" + this.form_field.offsetWidth + "px";
             }
         };

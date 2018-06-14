@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Panacea.Communcation.Management.UI.Models;
 
 namespace Panacea.Communcation.Management.UI.Controllers
 {
@@ -11,7 +12,17 @@ namespace Panacea.Communcation.Management.UI.Controllers
 
         public ActionResult Contacts()
         {
-            return View();
+            var model = new AddContactVm();
+            return View(model);
+        }
+
+
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddContact()
+        {
+            return null;
         }
 
         public ActionResult Organisations()

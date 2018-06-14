@@ -198,7 +198,8 @@ namespace Panacea.Communcation.Management.UI
 
             // chosen styles
             bundles.Add(new StyleBundle("~/Content/plugins/chosen/chosenStyles").Include(
-                "~/Content/plugins/chosen/bootstrap-chosen.css"));
+                "~/Content/plugins/chosen/chosen.css"));
+            //"~/Content/plugins/chosen/bootstrap-chosen.css"));
 
             // chosen 
             bundles.Add(new ScriptBundle("~/plugins/chosen").Include(
@@ -456,8 +457,14 @@ namespace Panacea.Communcation.Management.UI
             // Password meter 
             bundles.Add(new StyleBundle("~/plugins/passwordMeter").Include(
                 "~/Scripts/plugins/pwstrength/pwstrength-bootstrap.min.js",
-                "~/Scripts/plugins/pwstrength/zxcvbn.js"));        
+                "~/Scripts/plugins/pwstrength/zxcvbn.js"));
+
+            // Chosen
+            // bundles.Add(new ScriptBundle("~/bundles/custom").Include(
+            //    "~/Scripts/Custom/CustomConfiguration.js"));
         }
+
+
 
         // default
         //public static void RegisterBundles(BundleCollection bundles)

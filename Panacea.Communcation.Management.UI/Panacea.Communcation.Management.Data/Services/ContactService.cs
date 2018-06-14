@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Panacea.Communcation.Management.Business.Services
 {
-    public class ContactService
+    public class ContactService : IDisposable
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
+
+        public void Dispose()
+        {
+            ((IDisposable) unitOfWork).Dispose();
+        }
     }
 }
