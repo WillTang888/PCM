@@ -29,7 +29,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public string City { get; set; }
         public string County { get; set; }
         public string Postcode { get; set; }
-        public Nullable<int> Country { get; set; }
+        public string Country { get; set; }
         public int FkRefStatusId { get; set; }
     
         public virtual Organisations Organisations { get; set; }

@@ -11,7 +11,8 @@ namespace Panacea.Communcation.Management.UI
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.min.css",
                 "~/Content/animate.css",
-                "~/Content/style.css"));
+                "~/Content/style.css",
+                "~/Content/styleOverride.css"));
 
             // Font Awesome icons
             bundles.Add(new StyleBundle("~/font-awesome/css").Include(
@@ -20,6 +21,10 @@ namespace Panacea.Communcation.Management.UI
             // jQuery
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-3.1.1.min.js"));
+
+            // jQuery Validation
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                "~/Scripts/jquery.validate*"));
 
             // jQueryUI CSS
             bundles.Add(new ScriptBundle("~/Scripts/plugins/jquery-ui/jqueryuiStyles").Include(
@@ -458,6 +463,10 @@ namespace Panacea.Communcation.Management.UI
             bundles.Add(new StyleBundle("~/plugins/passwordMeter").Include(
                 "~/Scripts/plugins/pwstrength/pwstrength-bootstrap.min.js",
                 "~/Scripts/plugins/pwstrength/zxcvbn.js"));
+
+            // Custom GlobalJs Functions
+            bundles.Add(new ScriptBundle("~/bundles/global").Include(
+                "~/Scripts/Custom/global.js"));
 
             // Chosen
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(

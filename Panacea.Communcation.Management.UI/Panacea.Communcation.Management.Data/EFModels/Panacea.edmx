@@ -85,7 +85,7 @@
           <Property Name="City" Type="nvarchar(max)" />
           <Property Name="County" Type="nvarchar(max)" />
           <Property Name="Postcode" Type="nvarchar(max)" />
-          <Property Name="Country" Type="int" />
+          <Property Name="Country" Type="nvarchar(max)" />
           <Property Name="FkRefStatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Organisations">
@@ -102,7 +102,7 @@
           <Property Name="City" Type="nvarchar(max)" />
           <Property Name="County" Type="nvarchar(max)" />
           <Property Name="Postcode" Type="nvarchar(max)" />
-          <Property Name="Country" Type="int" />
+          <Property Name="Country" Type="nvarchar(max)" />
           <Property Name="FkRefStatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RefStatus">
@@ -400,7 +400,7 @@
           <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="Int32" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FkRefStatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Contacts" ToRole="Organisations" />
           <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Contacts_RefStatus" FromRole="Contacts" ToRole="RefStatus" />
@@ -419,7 +419,7 @@
           <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="Int32" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="FkRefStatusId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Contacts" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Organisations" ToRole="Contacts" />
           <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Organisations_RefStatus" FromRole="Organisations" ToRole="RefStatus" />

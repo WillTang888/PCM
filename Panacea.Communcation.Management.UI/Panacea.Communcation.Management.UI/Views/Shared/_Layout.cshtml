@@ -53,16 +53,17 @@
     <!-- End wrapper-->
     <!-- Section for main scripts render -->
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/plugins/slimScroll")
     @Scripts.Render("~/bundles/inspinia")
-
+    @Scripts.Render("~/bundles/global")
     <!-- Skin config script - only for demo purpose-->
     @Scripts.Render("~/bundles/skinConfig")
 
     <!-- Handler for local scripts -->
     @RenderSection("scripts", required: false)
-
+    @Scripts.Render("~/bundles/custom")
 
 
 </body>

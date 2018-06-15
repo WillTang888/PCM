@@ -8,7 +8,7 @@ namespace Panacea.Communcation.Management.Business.Services
 {
     public class OrganisationService : IDisposable
     {
-        private UnitOfWork unitOfWork = new UnitOfWork();
+        public UnitOfWork unitOfWork = new UnitOfWork();
 
         public void Dispose()
         {

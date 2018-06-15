@@ -10,7 +10,7 @@
     [City] NVARCHAR(MAX) NULL, 
     [County] NVARCHAR(MAX) NULL, 
     [Postcode] NVARCHAR(MAX) NULL, 
-    [Country] INT NULL, 
+    [Country] NVARCHAR(MAX) NULL, 
     [FkRefStatusId] INT NOT NULL DEFAULT 1,
     CONSTRAINT [FK_Organisations_RefStatus] FOREIGN KEY ([FkRefStatusId]) REFERENCES [RefStatus]([Id])
 )

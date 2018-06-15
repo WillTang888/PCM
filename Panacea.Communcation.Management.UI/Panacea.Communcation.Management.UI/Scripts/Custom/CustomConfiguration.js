@@ -1,15 +1,15 @@
-﻿//$.validator.setDefaults({ ignore: null });  // Enable Client Validation on hidden field and Telerik Kendo DropdownList/ComboList
+﻿$.validator.setDefaults({ ignore: null });  // Enable Client Validation on hidden field and Telerik Kendo DropdownList/ComboList
 
-////fixes jQuery Validation on forms that are added dynamically from GET, POST, AJAX.
-//$(function () {
-//    //parsing the unobtrusive attributes when we get content via ajax
-//    $(document).ajaxComplete(function () {
-//        $.validator.unobtrusive.parse(document);
-//    });
-//});
+//fixes jQuery Validation on forms that are added dynamically from GET, POST, AJAX.
+$(function () {
+    //parsing the unobtrusive attributes when we get content via ajax
+    $(document).ajaxComplete(function () {
+        $.validator.unobtrusive.parse(document);
+    });
+});
 
 
-//$.fn.modal.Constructor.DEFAULTS.backdrop = 'static';
+$.fn.modal.Constructor.DEFAULTS.backdrop = 'static';
 
 //Configuration For Chosen
 
@@ -24,3 +24,11 @@ var config = {
 for (var selector in config) {
     $(selector).chosen(config[selector]);
 }
+
+
+// Call this method on pages that have data tables.
+
+
+
+
+

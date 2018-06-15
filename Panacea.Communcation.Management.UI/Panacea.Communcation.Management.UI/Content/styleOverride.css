@@ -1,0 +1,17 @@
+﻿
+/*Create Large Modal*/
+
+@media (min-width: 992px) {
+    .modal-xlg {
+        width: 1200px;
+    }
+}
+
+
+/*MAke Chosen DDL Smaller to match bootstrap small input*/
+
+.chosen-container-single .chosen-single {
+    font-size: 12px;
+    padding: 6px 12px;
+    line-height: 1.5;
+}
