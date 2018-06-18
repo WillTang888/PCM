@@ -85,4 +85,60 @@ namespace Panacea.Communcation.Management.UI.Models
         public string Postcode { get; set; }
         public string Country { get; set; }
     }
+
+    public class EditContactVm
+    {
+        public List<SelectListItem> TitleList;
+        public List<SelectListItem> OganisationList;
+        public List<SelectListItem> CountryList;
+
+        public EditContactVm()
+        {
+            TitleList = DownDownListHelper.GetTitleSelectList();
+            OganisationList = DownDownListHelper.GetOrganisationSelectList();
+            CountryList = DownDownListHelper.GetCountrySelectList();
+        }
+
+        [Required]
+        public int Id { get; set; }
+
+        [Required]
+        [Display(Name = "Title")]
+        public string Title { get; set; }
+
+        [Required]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        [Required]
+        [Display(Name = "Organisation")]
+        public int? OrganisationId { get; set; }
+
+        [Required]
+        [Display(Name = "Job Title")]
+        public string JobTitle { get; set; }
+
+        [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Mobile { get; set; }
+
+        [Display(Name = "Address 1")]
+        public string Address1 { get; set; }
+
+        [Display(Name = "Address 2")]
+        public string Address2 { get; set; }
+
+        [Display(Name = "Address 3")]
+        public string Address3 { get; set; }
+        public string City { get; set; }
+        public string County { get; set; }
+        public string Postcode { get; set; }
+        public string Country { get; set; }
+    }
 }

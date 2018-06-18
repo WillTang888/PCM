@@ -14,6 +14,7 @@ namespace Panacea.Communcation.Management.UI
         public const string SomethingWentWrong = "Something Went Wrong";
         public const string InValid = "Invalid";
         public const string IsActive = "IsActive";
-        
+        public const string FailedValidation = "Failed Input Validation";
+
     }
 }
