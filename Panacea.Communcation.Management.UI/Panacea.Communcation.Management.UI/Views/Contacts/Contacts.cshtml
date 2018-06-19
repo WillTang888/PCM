@@ -24,6 +24,7 @@
                             <th>Email</th>
                             <th>Country</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,6 +39,9 @@
                                 <td>@item.Country</td>
                                 <td>
                                     <button class="btn btn-xs btn-primary EditBtn" type="button" data-id="@item.Id" data-url="@Url.Action("EditContact")/@item.Id"><i class="fa fa-pencil"></i> Edit</button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-primary DeleteBtn" type="button" data-id="@item.Id" data-confirmation="@Url.Action("DeleteConfirmation")/@item.Id"><i class="fa fa-trash"></i> Delete</button>
                                 </td>
                             </tr>
                         }
@@ -83,7 +87,6 @@
                 }
             });
 
-
             // Click Edit button in Contact List table
             $(document).on('click', '.EditBtn', function () {
                 var url = $(this).data('url');
@@ -95,6 +98,15 @@
                 });
             });
 
+            // Delete Contact
+            $(document).on('click', '.DeleteBtn', function () {
+                var url = $(this).data('confirmation');
+        
+                $.get(url, function (data) {
+                    $("body").prepend(data);
+                    $('#modal-ConfirmDelete').modal('show');
+                });
+            });
 
         });
 

@@ -234,6 +234,7 @@
     <Compile Include="Helpers\HMTLHelperExtensions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModels.cs" />
+    <Compile Include="Models\DeleteConfirmationInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1832,6 +1833,7 @@
     <Content Include="Views\Settings\View1.cshtml" />
     <Content Include="Views\Contacts\_ModalAddContact.cshtml" />
     <Content Include="Views\Contacts\_ModalEditContact.cshtml" />
+    <Content Include="Views\Shared\_ModalDeleteConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

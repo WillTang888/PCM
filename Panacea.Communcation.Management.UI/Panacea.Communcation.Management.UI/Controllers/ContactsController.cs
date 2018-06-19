@@ -13,6 +13,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
     {
         private ContactService contactService = new ContactService();
 
+        [HttpGet]
         public ActionResult Contacts()
         {
             var model = new ContactListVM();
@@ -58,6 +59,8 @@ namespace Panacea.Communcation.Management.UI.Controllers
                     eFContact.Postcode = model.Postcode;
                     eFContact.Country = model.Country;
                     eFContact.FkRefStatusId = (int)StatusEnum.Active;
+                    eFContact.DateAdded = DateTime.Now;
+                    eFContact.Description = model.Description;
                     contactService.Insert(eFContact);
                     return Json(new { status = CommonConstants.Ok, message = CommonConstants.AddedSuccessfully });
                 }
@@ -71,7 +74,6 @@ namespace Panacea.Communcation.Management.UI.Controllers
                 return Json(new { status = CommonConstants.Error, message = CommonConstants.FailedValidation });
             }     
         }
-
 
         [HttpGet]
         public PartialViewResult EditContact(int id)
@@ -94,6 +96,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
             model.County = eFContact.County;
             model.Postcode = eFContact.Postcode;
             model.Country = eFContact.Country;
+            model.Description = eFContact.Description;
 
             return PartialView("_ModalEditContact", model);
         }
@@ -107,7 +110,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
                 try
                 {
                     //convert model to ef model
-                    Contacts eFContact = new Contacts();
+                    Contacts eFContact = contactService.GetById(model.Id);
                     eFContact.Id = model.Id;
                     eFContact.Title = model.Title;
                     eFContact.FirstName = model.FirstName;
@@ -125,6 +128,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
                     eFContact.Postcode = model.Postcode;
                     eFContact.Country = model.Country;
                     eFContact.FkRefStatusId = (int)StatusEnum.Active;
+                    eFContact.Description = model.Description;
 
                     contactService.Update(eFContact);
                     return Json(new { status = CommonConstants.Ok, message = CommonConstants.Ok });
@@ -140,8 +144,27 @@ namespace Panacea.Communcation.Management.UI.Controllers
             }            
         }
 
+        [HttpGet]
+        public ActionResult DeleteConfirmation(int id)
+        {
+            DeleteConfirmationInfo model = new DeleteConfirmationInfo();
+            model.Id = id.ToString();
+            model.ModalTitle = "Delete";
+            model.DeleteAction = "Delete";
+            model.DeleteController = "Contacts";
+            return PartialView("_ModalDeleteConfirmation", model);
+        }
 
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var contactToDelete = contactService.GetById(id);
+            contactToDelete.FkRefStatusId = (int)StatusEnum.Deleted;
+            contactService.Update(contactToDelete);
 
+            return RedirectToAction("Contacts");
+        }
 
         public ActionResult Organisations()
         {

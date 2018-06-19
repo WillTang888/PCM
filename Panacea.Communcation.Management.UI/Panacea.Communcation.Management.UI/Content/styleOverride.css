@@ -8,10 +8,35 @@
 }
 
 
-/*MAke Chosen DDL Smaller to match bootstrap small input*/
+/*Make Chosen DDL Smaller to match bootstrap small input*/
 
 .chosen-container-single .chosen-single {
     font-size: 12px;
     padding: 6px 12px;
     line-height: 1.5;
 }
+
+/*************** Used to Make Bootstrap Modals appear center of the screen ***************/
+.vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width: inherit;
+    height: inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    pointer-events: all;
+}
+/**************************************************************************************/

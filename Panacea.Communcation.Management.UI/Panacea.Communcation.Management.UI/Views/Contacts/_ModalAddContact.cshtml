@@ -1,136 +1,143 @@
 ﻿@model Panacea.Communcation.Management.UI.Models.AddContactVm
 <div id="modalAddContact" class="modal fade" aria-hidden="true">
-    <div class="modal-dialog modal-xlg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Add a Contact</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-
-                    @using (Html.BeginForm("AddContact", "Contacts", FormMethod.Post, new { @Id = "FormAddContact", role = "form", @class = "form-horizontal" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.DropDownListFor(x => x.Title, Model.TitleList, new { @class = "chosen-select", tabindex = "1", placeholder = "Please Select" })
-                                        @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.OrganisationId, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.DropDownListFor(x => x.OrganisationId, Model.OganisationList, new { @class = "chosen-select", tabindex = "2", placeholder = "Please Select" })
-                                        @Html.ValidationMessageFor(m => m.OrganisationId, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control input-sm" })
-                                        @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control input-sm" })
-                                        @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.JobTitle, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control input-sm" })
-                                        @Html.ValidationMessageFor(m => m.JobTitle, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm" })
-                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Mobile, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Address1, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Address1, new { @class = "form-control input-sm" })
-                                        @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Address2, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Address2, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Address3, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Address3, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.City, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.City, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.County, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.County, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Postcode, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.TextBoxFor(m => m.Postcode, new { @class = "form-control input-sm" })
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-3" })
-                                    <div class="col-md-9">
-                                        @Html.DropDownListFor(x => x.Country, Model.CountryList, new { @class = "chosen-select", tabindex = "1", placeholder = "Please Select" })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog modal-xlg vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add a Contact</h4>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
-                <button id="btnAddContact" type="button" class="btn btn-primary btn-sm">Add</button>
+                <div class="modal-body">
+                    <div class="row">
 
+                        @using (Html.BeginForm("AddContact", "Contacts", FormMethod.Post, new { @Id = "FormAddContact", role = "form", @class = "form-horizontal" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Title, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.DropDownListFor(x => x.Title, Model.TitleList, new { @class = "chosen-select", tabindex = "1", placeholder = "Please Select" })
+                                            @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.OrganisationId, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.DropDownListFor(x => x.OrganisationId, Model.OganisationList, new { @class = "chosen-select", tabindex = "2", placeholder = "Please Select" })
+                                            @Html.ValidationMessageFor(m => m.OrganisationId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.FirstName, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control input-sm" })
+                                            @Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.LastName, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control input-sm" })
+                                            @Html.ValidationMessageFor(m => m.LastName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.JobTitle, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.JobTitle, new { @class = "form-control input-sm" })
+                                            @Html.ValidationMessageFor(m => m.JobTitle, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Email, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-sm" })
+                                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Phone, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Mobile, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Mobile, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Description, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control input-sm", @rows = 5 })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Address1, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Address1, new { @class = "form-control input-sm" })
+                                            @Html.ValidationMessageFor(m => m.Address1, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Address2, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Address2, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Address3, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Address3, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.City, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.City, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.County, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.County, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Postcode, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.TextBoxFor(m => m.Postcode, new { @class = "form-control input-sm" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Country, new { @class = "control-label col-md-3" })
+                                        <div class="col-md-9">
+                                            @Html.DropDownListFor(x => x.Country, Model.CountryList, new { @class = "chosen-select", tabindex = "1", placeholder = "Please Select" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                    <button id="btnAddContact" type="button" class="btn btn-primary btn-sm">Add</button>
+                </div>
             </div>
         </div>
     </div>
 </div>
- 
+
 

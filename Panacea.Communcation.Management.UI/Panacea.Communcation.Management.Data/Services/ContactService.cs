@@ -35,6 +35,12 @@ namespace Panacea.Communcation.Management.Business.Services
             unitOfWork.Save();
         }
 
+        public void DeleteById(int id)
+        {
+            unitOfWork.ContactRepository.Delete(id);
+            unitOfWork.Save();
+        }
+
         public void Dispose()
         {
             ((IDisposable) unitOfWork).Dispose();

@@ -84,7 +84,9 @@ namespace Panacea.Communcation.Management.UI.Models
         public string County { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
+        public string Description { get; set; }
     }
+
 
     public class EditContactVm
     {
@@ -140,5 +142,6 @@ namespace Panacea.Communcation.Management.UI.Models
         public string County { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
+        public string Description { get; set; }
     }
 }

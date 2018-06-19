@@ -31,6 +31,8 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public string Postcode { get; set; }
         public string Country { get; set; }
         public int FkRefStatusId { get; set; }
+        public System.DateTime DateAdded { get; set; }
+        public string Description { get; set; }
     
         public virtual Organisations Organisations { get; set; }
         public virtual RefStatus RefStatus { get; set; }
