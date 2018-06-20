@@ -88,24 +88,27 @@
           <Property Name="Country" Type="varchar(max)" />
           <Property Name="FkRefStatusId" Type="int" Nullable="false" />
           <Property Name="DateAdded" Type="datetime" Nullable="false" />
-          <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Organisations">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Email" Type="nvarchar(max)" />
-          <Property Name="Phone" Type="nvarchar(max)" />
-          <Property Name="Address1" Type="nvarchar(max)" />
-          <Property Name="Address2" Type="nvarchar(max)" />
-          <Property Name="Address3" Type="nvarchar(max)" />
-          <Property Name="City" Type="nvarchar(max)" />
-          <Property Name="County" Type="nvarchar(max)" />
-          <Property Name="Postcode" Type="nvarchar(max)" />
-          <Property Name="Country" Type="nvarchar(max)" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Email" Type="varchar(max)" />
+          <Property Name="Phone" Type="varchar(max)" />
+          <Property Name="Address1" Type="varchar(max)" />
+          <Property Name="Address2" Type="varchar(max)" />
+          <Property Name="Address3" Type="varchar(max)" />
+          <Property Name="City" Type="varchar(max)" />
+          <Property Name="County" Type="varchar(max)" />
+          <Property Name="Postcode" Type="varchar(max)" />
+          <Property Name="Country" Type="varchar(max)" />
           <Property Name="FkRefStatusId" Type="int" Nullable="false" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="Website" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="RefStatus">
           <Key>
@@ -369,13 +372,13 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
           <EntitySet Name="Contacts" EntityType="PCMModel.Contacts" />
+          <AssociationSet Name="FK_Contacts_RefStatus" Association="PCMModel.FK_Contacts_RefStatus">
+            <End Role="RefStatus" EntitySet="RefStatus" />
+            <End Role="Contacts" EntitySet="Contacts" />
+          </AssociationSet>
           <EntitySet Name="Organisations" EntityType="PCMModel.Organisations" />
           <AssociationSet Name="FK_Contacts_Organisations" Association="PCMModel.FK_Contacts_Organisations">
             <End Role="Organisations" EntitySet="Organisations" />
-            <End Role="Contacts" EntitySet="Contacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contacts_RefStatus" Association="PCMModel.FK_Contacts_RefStatus">
-            <End Role="RefStatus" EntitySet="RefStatus" />
             <End Role="Contacts" EntitySet="Contacts" />
           </AssociationSet>
           <AssociationSet Name="FK_Organisations_RefStatus" Association="PCMModel.FK_Organisations_RefStatus">
@@ -404,27 +407,42 @@
           <Property Name="Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FkRefStatusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Contacts" ToRole="Organisations" />
-          <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Contacts_RefStatus" FromRole="Contacts" ToRole="RefStatus" />
           <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Contacts_RefStatus" FromRole="Contacts" ToRole="RefStatus" />
+          <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Contacts" ToRole="Organisations" />
         </EntityType>
+        <Association Name="FK_Contacts_RefStatus">
+          <End Type="PCMModel.RefStatus" Role="RefStatus" Multiplicity="1" />
+          <End Type="PCMModel.Contacts" Role="Contacts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contacts">
+              <PropertyRef Name="FkRefStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="Organisations">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Address3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Address3" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="County" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Postcode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="FkRefStatusId" Type="Int32" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Contacts" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Organisations" ToRole="Contacts" />
           <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Organisations_RefStatus" FromRole="Organisations" ToRole="RefStatus" />
         </EntityType>
@@ -437,18 +455,6 @@
             </Principal>
             <Dependent Role="Contacts">
               <PropertyRef Name="FkOrganisationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contacts_RefStatus">
-          <End Type="PCMModel.RefStatus" Role="RefStatus" Multiplicity="1" />
-          <End Type="PCMModel.Contacts" Role="Contacts" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RefStatus">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Contacts">
-              <PropertyRef Name="FkRefStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -569,6 +575,9 @@
           <EntitySetMapping Name="Organisations">
             <EntityTypeMapping TypeName="PCMModel.Organisations">
               <MappingFragment StoreEntitySet="Organisations">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="FkRefStatusId" ColumnName="FkRefStatusId" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Postcode" ColumnName="Postcode" />

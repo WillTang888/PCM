@@ -12,6 +12,9 @@ namespace Panacea.Communcation.Management.UI.Controllers
     public class ContactsController : Controller
     {
         private ContactService contactService = new ContactService();
+        private OrganisationService organisationService = new OrganisationService();
+
+        #region "Contacts"
 
         [HttpGet]
         public ActionResult Contacts()
@@ -24,6 +27,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
                     Id = y.Id,
                     Name = y.FirstName + " " + y.LastName,
                     Organisation = y.Organisations.Name,
+                    OrganisationId = y.Organisations.Id,
                     JobTitle = y.JobTitle,
                     Email = y.Email,
                     Country = y.Country
@@ -166,7 +170,150 @@ namespace Panacea.Communcation.Management.UI.Controllers
             return RedirectToAction("Contacts");
         }
 
+        #endregion "Contacts"
+
         public ActionResult Organisations()
+        {
+            var model = new OrganisationListVM();
+
+            model.Organisations = organisationService.GetOrganisationsForGrid().Select(y =>
+                new OrganisationGridItemVM()
+                {
+                    Id = y.Id,
+                    Name = y.Name,
+                    Email = y.Email,
+                    Phone = y.Phone,
+                    City = y.City,
+                    Country = y.Country
+                }).ToList();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult AddOrganisation(AddOrganisationVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //convert model to ef model
+                    Organisations eFOrganisation = new Organisations
+                    {
+                        Id = 0,
+                        Name = model.Name,
+                        Email = model.Email,
+                        Phone = model.Phone,
+                        Website = model.Website,
+                        Address1 = model.Address1,
+                        Address2 = model.Address2,
+                        Address3 = model.Address3,
+                        City = model.City,
+                        County = model.County,
+                        Postcode = model.Postcode,
+                        Country = model.Country,
+                        FkRefStatusId = (int)StatusEnum.Active,
+                        DateAdded = DateTime.Now,
+                        Description = model.Description
+                    };
+
+                    organisationService.Insert(eFOrganisation);
+                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.AddedSuccessfully });
+                }
+                catch (Exception e)
+                {
+                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.SomethingWentWrong });
+                }
+            }
+            else
+            {
+                return Json(new { status = CommonConstants.Error, message = CommonConstants.FailedValidation });
+            }
+        }
+
+        public PartialViewResult EditOrganisation(int id)
+        {
+            Organisations eFOrganisation = organisationService.GetById(id);
+
+            EditOrganisationVm model = new EditOrganisationVm();
+            model.Id = id;
+            model.Name = eFOrganisation.Name;
+            model.Email = eFOrganisation.Email;
+            model.Phone = eFOrganisation.Phone;
+            model.Website = eFOrganisation.Website;
+            model.Address1 = eFOrganisation.Address1;
+            model.Address2 = eFOrganisation.Address2;
+            model.Address3 = eFOrganisation.Phone;
+            model.City = eFOrganisation.City;
+            model.County = eFOrganisation.Email;
+            model.Postcode = eFOrganisation.Address1;
+            model.Country = eFOrganisation.Address2;
+            model.Description = eFOrganisation.Address3;
+          
+            return PartialView("_ModalEditOrganisation", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult EditOrganisation(EditOrganisationVm model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //convert model to ef model
+                    Organisations eForganisation = organisationService.GetById(model.Id);
+                    eForganisation.Name = model.Name;
+                    eForganisation.Email = model.Email;
+                    eForganisation.Phone = model.Phone;
+                    eForganisation.Website = model.Website;
+                    eForganisation.Address1 = model.Address1;
+                    eForganisation.Address2 = model.Address2;
+                    eForganisation.Address3 = model.Phone;
+                    eForganisation.City = model.City;
+                    eForganisation.County = model.County;
+                    eForganisation.Postcode = model.Postcode;
+                    eForganisation.Country = model.Country;
+                    eForganisation.Description = model.Description;
+                    organisationService.Update(eForganisation);
+
+                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.Ok });
+                }
+                catch (Exception e)
+                {
+                    return Json(new { status = CommonConstants.Error, message = CommonConstants.SomethingWentWrong });
+                }
+            }
+            else
+            {
+                return Json(new { status = CommonConstants.Error, message = CommonConstants.FailedValidation });
+            }
+        }
+
+       
+        public ActionResult DeleteOrgConfirmation(int id)
+        {
+            DeleteConfirmationInfo model = new DeleteConfirmationInfo();
+            model.Id = id.ToString();
+            model.ModalTitle = "Delete";
+            model.DeleteAction = "DeleteOrganisation";
+            model.DeleteController = "Contacts";
+            return PartialView("_ModalDeleteConfirmation", model);
+
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult DeleteOrganisation(int id)
+        {
+            var orgToDelete = organisationService.GetById(id);
+            orgToDelete.FkRefStatusId = (int)StatusEnum.Deleted;
+            organisationService.Update(orgToDelete);
+
+            return RedirectToAction("Organisations");
+        }
+
+        public ActionResult DisplayOrganisation()
         {
             return View();
         }

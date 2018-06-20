@@ -34,7 +34,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public System.DateTime DateAdded { get; set; }
         public string Description { get; set; }
     
-        public virtual Organisations Organisations { get; set; }
         public virtual RefStatus RefStatus { get; set; }
+        public virtual Organisations Organisations { get; set; }
     }
 }

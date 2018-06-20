@@ -40,3 +40,9 @@
     pointer-events: all;
 }
 /**************************************************************************************/
+
+
+/* Setting all links to default color */
+.btn-link {
+    color: #1ab394;
+}

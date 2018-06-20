@@ -105,9 +105,7 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="EFModels\Panacea.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

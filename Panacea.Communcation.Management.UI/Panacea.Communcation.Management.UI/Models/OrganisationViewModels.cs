@@ -7,71 +7,47 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Panacea.Communcation.Management.UI.Helpers;
-
 namespace Panacea.Communcation.Management.UI.Models
 {
     // Modal used to list contacts
-    public class ContactListVM
+    public class OrganisationListVM
     {
-        public ContactListVM()
+        public OrganisationListVM()
         {
-            Contacts = new List<ContactsGridItemVM>();
-            addContactVm = new AddContactVm();
+            Organisations = new List<OrganisationGridItemVM>();
+            AddOrganisationVm = new AddOrganisationVm();
         }
 
-        public List<ContactsGridItemVM> Contacts { get; set; }
-        public AddContactVm addContactVm { get; set; }
+        public List<OrganisationGridItemVM> Organisations { get; set; }
+        public AddOrganisationVm AddOrganisationVm { get; set; }
     }
 
-    public class ContactsGridItemVM
+    public class OrganisationGridItemVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Organisation { get; set; }
-        public int OrganisationId { get; set; }
-        public string JobTitle { get; set; }
         public string Email { get; set; }
+        public string Phone { get; set; }
+        public string City { get; set; }
         public string Country { get; set; }
     }
 
-    public class AddContactVm
+    public class AddOrganisationVm
     {
-        public List<SelectListItem> TitleList;
-        public List<SelectListItem> OganisationList;
         public List<SelectListItem> CountryList;
 
-        public AddContactVm()
+        public AddOrganisationVm()
         {
-            TitleList = DownDownListHelper.GetTitleSelectList();
-            OganisationList = DownDownListHelper.GetOrganisationSelectList();
             CountryList = DownDownListHelper.GetCountrySelectList();
         }
 
         [Required]
-        [Display(Name = "Title")]
-        public string Title { get; set; }
-
-        [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
-
-        [Required]
-        [Display(Name = "Organisation")]
-        public int OrganisationId { get; set; }
-
-        [Required]
-        [Display(Name = "Job Title")]
-        public string JobTitle { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Mobile { get; set; }
 
         [Display(Name = "Address 1")]
         public string Address1 { get; set; }
@@ -85,51 +61,28 @@ namespace Panacea.Communcation.Management.UI.Models
         public string County { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
+        public string Website { get; set; }
         public string Description { get; set; }
     }
 
-
-    public class EditContactVm
+    public class EditOrganisationVm
     {
-        public List<SelectListItem> TitleList;
-        public List<SelectListItem> OganisationList;
         public List<SelectListItem> CountryList;
 
-        public EditContactVm()
+        public EditOrganisationVm()
         {
-            TitleList = DownDownListHelper.GetTitleSelectList();
-            OganisationList = DownDownListHelper.GetOrganisationSelectList();
             CountryList = DownDownListHelper.GetCountrySelectList();
         }
 
-        [Required]
         public int Id { get; set; }
 
         [Required]
-        [Display(Name = "Title")]
-        public string Title { get; set; }
-
-        [Required]
-        [Display(Name = "First Name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        public string LastName { get; set; }
-
-        [Required]
-        [Display(Name = "Organisation")]
-        public int? OrganisationId { get; set; }
-
-        [Required]
-        [Display(Name = "Job Title")]
-        public string JobTitle { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string Mobile { get; set; }
 
         [Display(Name = "Address 1")]
         public string Address1 { get; set; }
@@ -143,6 +96,7 @@ namespace Panacea.Communcation.Management.UI.Models
         public string County { get; set; }
         public string Postcode { get; set; }
         public string Country { get; set; }
+        public string Website { get; set; }
         public string Description { get; set; }
     }
 }

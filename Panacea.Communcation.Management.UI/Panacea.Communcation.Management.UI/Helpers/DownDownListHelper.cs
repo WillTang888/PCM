@@ -36,8 +36,7 @@ namespace Panacea.Communcation.Management.UI.Helpers
             var organisationService = new OrganisationService();
             var listOfOrgs = new List<SelectListItem>();
 
-            listOfOrgs = organisationService.unitOfWork.OrganisationRepository.Get(x => x.FkRefStatusId == 1)
-                .Select(y => new SelectListItem() {Text = y.Name, Value = y.Id.ToString()}).ToList();
+            listOfOrgs = organisationService.GetAllActive().Select(y => new SelectListItem() {Text = y.Name, Value = y.Id.ToString()}).ToList();
 
             listOfOrgs.Insert(0, new SelectListItem { Text = "", Value = "" });
 

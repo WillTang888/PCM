@@ -18,15 +18,14 @@ namespace Panacea.Communcation.Management.Business.Services
 
         public List<Contacts> GetContactsForGrid()
         {
-            return unitOfWork.ContactRepository.Get(x => x.FkRefStatusId == 1).ToList();
+            return unitOfWork.ContactRepository.Get(x => x.FkRefStatusId == 1, null, "Organisations").ToList();
         }
 
         public Contacts Insert(Contacts contact)
         {
             contact = unitOfWork.ContactRepository.Insert(contact);
             unitOfWork.Save();
-            return contact;
-     
+            return contact;     
         }
 
         public void Update(Contacts contact)

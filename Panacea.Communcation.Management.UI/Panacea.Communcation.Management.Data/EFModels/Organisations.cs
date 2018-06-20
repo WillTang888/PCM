@@ -32,6 +32,9 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public string Postcode { get; set; }
         public string Country { get; set; }
         public int FkRefStatusId { get; set; }
+        public System.DateTime DateAdded { get; set; }
+        public string Description { get; set; }
+        public string Website { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contacts> Contacts { get; set; }

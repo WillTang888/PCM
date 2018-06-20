@@ -237,6 +237,7 @@
     <Compile Include="Models\DeleteConfirmationInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\OrganisationViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1834,6 +1835,9 @@
     <Content Include="Views\Contacts\_ModalAddContact.cshtml" />
     <Content Include="Views\Contacts\_ModalEditContact.cshtml" />
     <Content Include="Views\Shared\_ModalDeleteConfirmation.cshtml" />
+    <Content Include="Views\Contacts\_ModalAddOrganisation.cshtml" />
+    <Content Include="Views\Contacts\_ModalEditOrganisation.cshtml" />
+    <Content Include="Views\Contacts\DisplayOrganisation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

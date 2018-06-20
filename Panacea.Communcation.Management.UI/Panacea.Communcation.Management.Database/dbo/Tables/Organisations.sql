@@ -13,6 +13,7 @@
     [Country] VARCHAR(MAX) NULL, 
     [FkRefStatusId] INT NOT NULL DEFAULT 1,
     [DateAdded] DATETIME NOT NULL, 
-    [Description] VARCHAR(MAX) NOT NULL, 
+    [Description] VARCHAR(MAX) NULL, 
+    [Website] VARCHAR(MAX) NULL, 
     CONSTRAINT [FK_Organisations_RefStatus] FOREIGN KEY ([FkRefStatusId]) REFERENCES [RefStatus]([Id])
 )
