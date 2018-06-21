@@ -144,4 +144,43 @@ namespace Panacea.Communcation.Management.UI.Models
         public string Country { get; set; }
         public string Description { get; set; }
     }
+
+    public class DisplayContactVm
+    {
+        public int Id { get; set; }
+
+        public string Title { get; set; }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public int? OrganisationId { get; set; }
+
+        public string Organisation { get; set; }
+
+        public string JobTitle { get; set; }
+
+        public string Email { get; set; }
+
+        public string Phone { get; set; }
+
+        public string Mobile { get; set; }
+
+        public string Address1 { get; set; }
+
+        public string Address2 { get; set; }
+
+        public string Address3 { get; set; }
+
+        public string City { get; set; }
+
+        public string County { get; set; }
+
+        public string Postcode { get; set; }
+
+        public string Country { get; set; }
+
+        public string Description { get; set; }
+    }
 }

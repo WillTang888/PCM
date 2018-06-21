@@ -170,6 +170,30 @@ namespace Panacea.Communcation.Management.UI.Controllers
             return RedirectToAction("Contacts");
         }
 
+        public ActionResult DisplayContact(int id)
+        {
+            Contacts eFContact = contactService.GetById(id);
+            DisplayContactVm model = new DisplayContactVm();
+            model.Id = id;
+            model.Title = eFContact.Title;
+            model.FirstName = eFContact.FirstName;
+            model.LastName = eFContact.LastName;
+            model.OrganisationId = eFContact.FkOrganisationId;
+            model.Organisation = eFContact.Organisations.Name;
+            model.JobTitle = eFContact.JobTitle;
+            model.Phone = eFContact.Phone;
+            model.Mobile = eFContact.Mobile;
+            model.Email = eFContact.Email;
+            model.Address1 = eFContact.Address1;
+            model.Address2 = eFContact.Address2;
+            model.Address3 = eFContact.Address3;
+            model.City = eFContact.City;
+            model.County = eFContact.County;
+            model.Postcode = eFContact.Postcode;
+            model.Country = eFContact.Country;
+            model.Description = eFContact.Description;
+            return View(model);
+        }
         #endregion "Contacts"
 
         public ActionResult Organisations()
@@ -290,7 +314,6 @@ namespace Panacea.Communcation.Management.UI.Controllers
             }
         }
 
-       
         public ActionResult DeleteOrgConfirmation(int id)
         {
             DeleteConfirmationInfo model = new DeleteConfirmationInfo();

@@ -45,4 +45,5 @@
 /* Setting all links to default color */
 .btn-link {
     color: #1ab394;
+    font-size: 13px;
 }

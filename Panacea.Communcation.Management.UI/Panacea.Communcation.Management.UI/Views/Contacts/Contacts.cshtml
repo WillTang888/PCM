@@ -31,19 +31,19 @@
 
                         @foreach (var item in Model.Contacts)
                         {
-                            <tr class="text-center">
-                                <td>@item.Name</td>
-                                <td><a href="@Url.Action("DisplayOrganisation", "Contacts")/@item.Id" class="btn btn-xs btn-link">@item.Organisation</a></td>
-                                <td>@item.JobTitle</td>
-                                <td>@item.Email</td>
-                                <td>@item.Country</td>
-                                <td>
-                                    <button class="btn btn-xs btn-primary EditBtn" type="button" data-id="@item.Id" data-url="@Url.Action("EditContact")/@item.Id"><i class="fa fa-pencil"></i> Edit</button>
-                                </td>
-                                <td>
-                                    <button class="btn btn-xs btn-primary DeleteBtn" type="button" data-id="@item.Id" data-confirmation="@Url.Action("DeleteConfirmation")/@item.Id"><i class="fa fa-trash"></i> Delete</button>
-                                </td>
-                            </tr>
+                        <tr class="text-center">
+                            <td><a href="@Url.Action("DisplayContact", "Contacts")/@item.Id" class="btn btn-xs btn-link">@item.Name</a></td>
+                            <td><a href="@Url.Action("DisplayOrganisation", "Contacts")/@item.OrganisationId" class="btn btn-xs btn-link">@item.Organisation</a></td>
+                            <td>@item.JobTitle</td>
+                            <td>@item.Email</td>
+                            <td>@item.Country</td>
+                            <td>
+                                <button class="btn btn-xs btn-primary EditBtn" type="button" data-id="@item.Id" data-url="@Url.Action("EditContact")/@item.Id"><i class="fa fa-pencil"></i> Edit</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-xs btn-primary DeleteBtn" type="button" data-id="@item.Id" data-confirmation="@Url.Action("DeleteConfirmation")/@item.Id"><i class="fa fa-trash"></i> Delete</button>
+                            </td>
+                        </tr>
                         }
                     </tbody>
                 </table>

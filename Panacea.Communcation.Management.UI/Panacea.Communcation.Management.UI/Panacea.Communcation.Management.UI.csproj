@@ -1840,6 +1840,7 @@
     <Content Include="Views\Contacts\DisplayOrganisation.cshtml" />
     <Content Include="Views\Interactions\Enquiries.cshtml" />
     <Content Include="Views\Interactions\Projects.cshtml" />
+    <Content Include="Views\Contacts\DisplayContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
