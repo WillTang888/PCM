@@ -9,9 +9,16 @@ namespace Panacea.Communcation.Management.UI.Controllers
     public class InteractionsController : Controller
     {
         // GET: Interactions
-        public ActionResult View1()
+        public ActionResult Enquiries()
         {
-            return View1();
+            return View();
+        }
+
+
+        // GET: Interactions
+        public ActionResult Projects()
+        {
+            return View();
         }
     }
 }

@@ -243,12 +243,12 @@ namespace Panacea.Communcation.Management.UI.Controllers
             model.Website = eFOrganisation.Website;
             model.Address1 = eFOrganisation.Address1;
             model.Address2 = eFOrganisation.Address2;
-            model.Address3 = eFOrganisation.Phone;
+            model.Address3 = eFOrganisation.Address3;
             model.City = eFOrganisation.City;
-            model.County = eFOrganisation.Email;
-            model.Postcode = eFOrganisation.Address1;
-            model.Country = eFOrganisation.Address2;
-            model.Description = eFOrganisation.Address3;
+            model.County = eFOrganisation.County;
+            model.Postcode = eFOrganisation.Postcode;
+            model.Country = eFOrganisation.Country;
+            model.Description = eFOrganisation.Description;
           
             return PartialView("_ModalEditOrganisation", model);
         }
@@ -313,9 +313,25 @@ namespace Panacea.Communcation.Management.UI.Controllers
             return RedirectToAction("Organisations");
         }
 
-        public ActionResult DisplayOrganisation()
+        public ActionResult DisplayOrganisation(int id)
         {
-            return View();
+            Organisations eFOrganisation = organisationService.GetById(id);
+
+            DisplayOrganisationVM model = new DisplayOrganisationVM();
+            model.Id = id;
+            model.Name = eFOrganisation.Name;
+            model.Email = eFOrganisation.Email;
+            model.Phone = eFOrganisation.Phone;
+            model.Website = eFOrganisation.Website;
+            model.Address1 = eFOrganisation.Address1;
+            model.Address2 = eFOrganisation.Address2;
+            model.Address3 = eFOrganisation.Address3;
+            model.City = eFOrganisation.City;
+            model.County = eFOrganisation.County;
+            model.Postcode = eFOrganisation.Postcode;
+            model.Country = eFOrganisation.Country;
+            model.Description = eFOrganisation.Description;
+            return View(model);
         }
 
         public ActionResult Groups()

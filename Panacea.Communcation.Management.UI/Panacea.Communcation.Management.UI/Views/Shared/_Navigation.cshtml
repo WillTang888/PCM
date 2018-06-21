@@ -38,7 +38,8 @@
             <li class="@Html.IsSelected(controller: "Interactions")">
                 <a href="@Url.Action("View1", "Interactions")"><i class="fa fa-hand-paper-o"></i> <span class="nav-label" data-i18n="nav.dashboard">Interactions</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "Interactions", cssClass: "in")">
-                    <li class="@Html.IsSelected(action: "View1")"><a href="@Url.Action("View1", "Interactions")">Item v.1</a></li>
+                    <li class="@Html.IsSelected(action: "View1")"><a href="@Url.Action("Enquiries", "Interactions")">Enquiries</a></li>
+                    <li class="@Html.IsSelected(action: "View1")"><a href="@Url.Action("Projects", "Interactions")">Projects</a></li>
                 </ul>
             </li>
             <li class="@Html.IsSelected(controller: "Contacts")">

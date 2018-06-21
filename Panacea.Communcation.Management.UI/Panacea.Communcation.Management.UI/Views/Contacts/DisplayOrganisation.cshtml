@@ -1,6 +1,11 @@
-﻿
+﻿@model Panacea.Communcation.Management.UI.Models.DisplayOrganisationVM
 @{
     ViewBag.Title = "DisplayOrganisation";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
 }
 
 <div class="animated fadeInRight">
@@ -12,77 +17,46 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="m-b-md">
-                                <a href="#" class="btn btn-white btn-xs pull-right">Edit project</a>
-                                <h2>Panacea</h2>
+                                <button class="btn btn-xs btn-primary EditBtn pull-right" type="button" data-url="@Url.Action("EditOrganisation")/@Model.Id"><i class="fa fa-pencil"></i> Edit Info</button>
+                                <h2><strong>@Model.Name</strong></h2>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <dl class="dl-horizontal">
                                         <dt>Email:</dt>
-                                        <dd>info@panacea.com</dd>
+                                        <dd>@Model.Email</dd>
                                         <dt>Phone:</dt>
-                                        <dd>0207 736 2114</dd>
+                                        <dd>@Model.Phone</dd>
                                         <dt>Website:</dt>
-                                        <dd><a href="#" class="text-navy"> https://panacea-software.com/</a> </dd>
+                                        <dd><a href="@Model.Website" class="text-navy" target="_blank"> @Model.Website</a></dd>
                                         <dt>&nbsp;</dt>
                                         <dd>&nbsp;</dd>
                                         <dt>Description:</dt>
-                                        <dd>An award-winning online software offers flexible and intelligent solutions to streamline your project management, account management, procurement and reporting.</dd>
+                                        <dd>@Model.Description</dd>
                                     </dl>
                                 </div>
                                 <div class="col-lg-6" id="cluster_info">
                                     <dl class="dl-horizontal">
                                         <dt>Address 1:</dt>
-                                        <dd>The Old School</dd>
+                                        <dd>@Model.Address1</dd>
                                         <dt>Address 2:</dt>
-                                        <dd>Exton Street</dd>
+                                        <dd>@Model.Address2</dd>
                                         <dt>Address 3:</dt>
-                                        <dd></dd>
+                                        <dd>@Model.Address3</dd>
+                                        <dt>County:</dt>
+                                        <dd>@Model.County</dd>
                                         <dt>City:</dt>
-                                        <dd>London</dd>
+                                        <dd>@Model.City</dd>
                                         <dt>Postcode:</dt>
-                                        <dd>SE1 8UE</dd>
+                                        <dd>@Model.Postcode</dd>
                                         <dt>Country:</dt>
-                                        <dd>United Kingdom</dd>
+                                        <dd>@Model.Country</dd>
                                     </dl>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div id="map" style="height: 300px"></div>
-                            <script>
-                                var map;
-
-                                function initMap() {
-
-                                    //map = new google.maps.Map(document.getElementById('map'),
-                                    //    {
-                                    //        center: { lat: -34.397, lng: 150.644 },
-                                    //        zoom: 8
-                                    //    });
-
-                                    var geocoder = new google.maps.Geocoder();
-                                    geocoder.geocode({ 'address': 'The old school, SE1 8UE' }, function(results, status) {
-                                        if (status == google.maps.GeocoderStatus.OK) {
-
-                                            map = new google.maps.Map(document.getElementById('map'),
-                                                {
-                                                    center: results[0].geometry.location,
-                                                    zoom: 16
-                                                });
-
-                                           // map.setCenter(results[0].geometry.location);
-     
-
-                                            var marker = new google.maps.Marker({
-                                                map: map,
-                                                position: results[0].geometry.location
-                                            });
-                                        }
-                                    });
-                                                                   
-                                }
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -91,8 +65,9 @@
             <div class="tabs-container">
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-1">Enquiries</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-2">Users</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-2">Contacts</a></li>
                     <li class=""><a data-toggle="tab" href="#tab-3">Documents</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-4">Notes</a></li>
 
                 </ul>
                 <div class="tab-content">
@@ -296,7 +271,7 @@
                     </div>
                     <div id="tab-2" class="tab-pane">
                         <div class="panel-body">
-                            
+
                         </div>
                     </div>
                     <div id="tab-3" class="tab-pane">
@@ -320,4 +295,56 @@
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRLtk5K58WRt15LHZnB0mFn2qFqPvB98c&callback=initMap" async defer></script>
+@section Scripts {
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/chosen")
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRLtk5K58WRt15LHZnB0mFn2qFqPvB98c&callback=initMap" async defer></script>
+    <script>
+        var map;
+
+        function initMap() {
+
+            //map = new google.maps.Map(document.getElementById('map'),
+            //    {
+            //        center: { lat: -34.397, lng: 150.644 },
+            //        zoom: 8
+            //    });
+
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'address': '@Model.Address1, @Model.Postcode' },
+            function(results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+
+                    map = new google.maps.Map(document.getElementById('map'),
+                    {
+                        center: results[0].geometry.location,
+                        zoom: 16
+                    });
+
+                    // map.setCenter(results[0].geometry.location);
+
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function () {
+
+            //Click Edit button in Contact List table
+            $(document).on('click', '.EditBtn', function () {
+            var url = $(this).data('url');
+
+                $.get(url, function (data) {
+                    $("body").prepend(data);
+                    $('.chosen-select').chosen();
+                    $('#modalEditOrganisation').modal('show');
+                });
+            });
+
+        });
+
+    </script>
+}

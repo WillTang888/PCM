@@ -99,4 +99,27 @@ namespace Panacea.Communcation.Management.UI.Models
         public string Website { get; set; }
         public string Description { get; set; }
     }
+
+    public class DisplayOrganisationVM
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Website { get; set; }
+        public string Description { get; set; }
+
+        [Display(Name = "Address 1")]
+        public string Address1 { get; set; }
+
+        [Display(Name = "Address 2")]
+        public string Address2 { get; set; }
+
+        [Display(Name = "Address 3")]
+        public string Address3 { get; set; }
+        public string City { get; set; }
+        public string County { get; set; }
+        public string Postcode { get; set; }
+        public string Country { get; set; }
+    }
 }

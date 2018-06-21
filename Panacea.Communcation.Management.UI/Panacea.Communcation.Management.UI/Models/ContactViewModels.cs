@@ -88,7 +88,6 @@ namespace Panacea.Communcation.Management.UI.Models
         public string Description { get; set; }
     }
 
-
     public class EditContactVm
     {
         public List<SelectListItem> TitleList;

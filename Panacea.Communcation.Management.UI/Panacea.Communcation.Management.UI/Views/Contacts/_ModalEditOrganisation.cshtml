@@ -125,7 +125,7 @@
             $.post(action, serializedForm,
                 function (result) {
                     if (result.status == "Ok") {
-                        var redirect = '@Url.Action("Organisations", "Contacts")';
+                        var redirect = '@Url.Action("DisplayOrganisation", "Contacts")/@Model.Id';
                         window.location.href = redirect;
                     }
                     else {
