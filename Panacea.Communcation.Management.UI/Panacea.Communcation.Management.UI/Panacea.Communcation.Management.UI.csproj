@@ -1825,7 +1825,6 @@
     <Content Include="Views\UIElements\Typography.cshtml" />
     <Content Include="Views\UIElements\Video.cshtml" />
     <Content Include="Views\Widgets\Index.cshtml" />
-    <Content Include="Views\Interactions\View1.cshtml" />
     <Content Include="Views\Media\View1.cshtml" />
     <Content Include="Views\Reports\View1.cshtml" />
     <Content Include="Views\Contacts\Contacts.cshtml" />
@@ -1841,6 +1840,8 @@
     <Content Include="Views\Interactions\Enquiries.cshtml" />
     <Content Include="Views\Interactions\Projects.cshtml" />
     <Content Include="Views\Contacts\DisplayContact.cshtml" />
+    <Content Include="Views\Interactions\Releases.cshtml" />
+    <Content Include="Views\Interactions\Assets.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

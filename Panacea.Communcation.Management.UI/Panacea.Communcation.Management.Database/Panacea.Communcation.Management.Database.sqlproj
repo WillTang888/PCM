@@ -73,6 +73,9 @@
     <Build Include="dbo\Tables\RefStatus.sql" />
     <Build Include="dbo\Tables\Contacts.sql" />
     <Build Include="dbo\Tables\Organisations.sql" />
+    <Build Include="dbo\Tables\Groups.sql" />
+    <Build Include="dbo\Tables\GroupContact.sql" />
+    <Build Include="dbo\Tables\GroupOrganisation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Panacea.Communcation.Management.Database.Local.publish.xml" />

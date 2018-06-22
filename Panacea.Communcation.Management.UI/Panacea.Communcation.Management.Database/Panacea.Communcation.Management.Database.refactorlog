@@ -14,4 +14,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FkOrganisationId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="3bd4ae1f-328d-4267-aa24-f9216678aa04" ChangeDateTime="06/22/2018 11:07:07">
+    <Property Name="ElementName" Value="[dbo].[GroupContact].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GroupContact]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkGroupId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="68332788-9dd6-4e47-9b9a-cc0f947904dc" ChangeDateTime="06/22/2018 11:07:19">
+    <Property Name="ElementName" Value="[dbo].[GroupContact].[FkGroupId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[GroupContact]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkContactId" />
+  </Operation>
 </Operations>

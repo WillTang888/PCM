@@ -20,5 +20,19 @@ namespace Panacea.Communcation.Management.UI.Controllers
         {
             return View();
         }
+
+
+        // GET: Interactions
+        public ActionResult Releases()
+        {
+            return View();
+        }
+
+
+        // GET: Interactions
+        public ActionResult Assets()
+        {
+            return View();
+        }
     }
 }

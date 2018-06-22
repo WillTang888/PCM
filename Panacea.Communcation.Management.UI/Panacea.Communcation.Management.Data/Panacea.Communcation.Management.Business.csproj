@@ -64,7 +64,7 @@
     <Compile Include="EFModels\Contacts.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModels\C__MigrationHistory.cs">
+    <Compile Include="EFModels\Groups.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>
     <Compile Include="EFModels\Organisations.cs">

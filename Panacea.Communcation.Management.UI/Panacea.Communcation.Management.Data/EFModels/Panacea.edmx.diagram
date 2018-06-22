@@ -5,11 +5,10 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2b2dee0c8cb34ff98d626efad2070cb9" Name="Diagram1">
-        <EntityTypeShape EntityType="PCMModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PCMModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="PCMModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="PCMModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PCMModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PCMModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" FillColor="OliveDrab" />
         <EntityTypeShape EntityType="PCMModel.RefStatus" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
         <AssociationConnector Association="PCMModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="PCMModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
@@ -19,6 +18,9 @@
         <EntityTypeShape EntityType="PCMModel.Organisations" Width="1.5" PointX="5" PointY="6.5" />
         <AssociationConnector Association="PCMModel.FK_Contacts_Organisations" />
         <AssociationConnector Association="PCMModel.FK_Organisations_RefStatus" />
+        <EntityTypeShape EntityType="PCMModel.Groups" Width="1.5" PointX="10.125" PointY="10.125" />
+        <AssociationConnector Association="PCMModel.GroupContact" />
+        <AssociationConnector Association="PCMModel.GroupOrganisation" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

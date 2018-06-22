@@ -25,7 +25,6 @@ namespace Panacea.Communcation.Management.Business.EFModels
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
@@ -33,5 +32,6 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public virtual DbSet<RefStatus> RefStatus { get; set; }
         public virtual DbSet<Contacts> Contacts { get; set; }
         public virtual DbSet<Organisations> Organisations { get; set; }
+        public virtual DbSet<Groups> Groups { get; set; }
     }
 }

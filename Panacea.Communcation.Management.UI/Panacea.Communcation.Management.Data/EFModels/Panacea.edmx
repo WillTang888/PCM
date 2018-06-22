@@ -90,6 +90,32 @@
           <Property Name="DateAdded" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="GroupContact">
+          <Key>
+            <PropertyRef Name="FkGroupId" />
+            <PropertyRef Name="FkContactId" />
+          </Key>
+          <Property Name="FkGroupId" Type="int" Nullable="false" />
+          <Property Name="FkContactId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupOrganisation">
+          <Key>
+            <PropertyRef Name="FkGroupId" />
+            <PropertyRef Name="FkOrganisationId" />
+          </Key>
+          <Property Name="FkGroupId" Type="int" Nullable="false" />
+          <Property Name="FkOrganisationId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="Description" Type="varchar(max)" />
+          <Property Name="DateAdded" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Organisations">
           <Key>
             <PropertyRef Name="Id" />
@@ -197,6 +223,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_GroupContact_Contacts">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="1" />
+          <End Role="GroupContact" Type="Self.GroupContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupContact">
+              <PropertyRef Name="FkContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupContact_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="GroupContact" Type="Self.GroupContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupContact">
+              <PropertyRef Name="FkGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupOrganisation_Groups">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="GroupOrganisation" Type="Self.GroupOrganisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupOrganisation">
+              <PropertyRef Name="FkGroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupOrganisation_Organisations">
+          <End Role="Organisations" Type="Self.Organisations" Multiplicity="1" />
+          <End Role="GroupOrganisation" Type="Self.GroupOrganisation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Organisations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupOrganisation">
+              <PropertyRef Name="FkOrganisationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Organisations_RefStatus">
           <End Role="RefStatus" Type="Self.RefStatus" Multiplicity="1" />
           <End Role="Organisations" Type="Self.Organisations" Multiplicity="*" />
@@ -217,6 +291,9 @@
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupContact" EntityType="Self.GroupContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupOrganisation" EntityType="Self.GroupOrganisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organisations" EntityType="Self.Organisations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RefStatus" EntityType="Self.RefStatus" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Contacts_Organisations" Association="Self.FK_Contacts_Organisations">
@@ -243,6 +320,22 @@
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_GroupContact_Contacts" Association="Self.FK_GroupContact_Contacts">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="GroupContact" EntitySet="GroupContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupContact_Groups" Association="Self.FK_GroupContact_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupContact" EntitySet="GroupContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupOrganisation_Groups" Association="Self.FK_GroupOrganisation_Groups">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="GroupOrganisation" EntitySet="GroupOrganisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupOrganisation_Organisations" Association="Self.FK_GroupOrganisation_Organisations">
+            <End Role="Organisations" EntitySet="Organisations" />
+            <End Role="GroupOrganisation" EntitySet="GroupOrganisation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Organisations_RefStatus" Association="Self.FK_Organisations_RefStatus">
             <End Role="RefStatus" EntitySet="RefStatus" />
             <End Role="Organisations" EntitySet="Organisations" />
@@ -252,16 +345,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PCMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="C__MigrationHistory">
-          <Key>
-            <PropertyRef Name="MigrationId" />
-            <PropertyRef Name="ContextKey" />
-          </Key>
-          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="AspNetRoles">
           <Key>
             <PropertyRef Name="Id" />
@@ -353,7 +436,6 @@
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
         </Association>
         <EntityContainer Name="PCMEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
           <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" />
           <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" />
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" />
@@ -385,6 +467,15 @@
             <End Role="RefStatus" EntitySet="RefStatus" />
             <End Role="Organisations" EntitySet="Organisations" />
           </AssociationSet>
+          <EntitySet Name="Groups" EntityType="PCMModel.Groups" />
+          <AssociationSet Name="GroupContact" Association="PCMModel.GroupContact">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="GroupOrganisation" Association="PCMModel.GroupOrganisation">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Organisations" EntitySet="Organisations" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contacts">
           <Key>
@@ -411,6 +502,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Contacts_RefStatus" FromRole="Contacts" ToRole="RefStatus" />
           <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Contacts" ToRole="Organisations" />
+          <NavigationProperty Name="Groups" Relationship="PCMModel.GroupContact" FromRole="Contacts" ToRole="Groups" />
         </EntityType>
         <Association Name="FK_Contacts_RefStatus">
           <End Type="PCMModel.RefStatus" Role="RefStatus" Multiplicity="1" />
@@ -445,6 +537,7 @@
           <Property Name="Website" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Contacts" Relationship="PCMModel.FK_Contacts_Organisations" FromRole="Organisations" ToRole="Contacts" />
           <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Organisations_RefStatus" FromRole="Organisations" ToRole="RefStatus" />
+          <NavigationProperty Name="Groups" Relationship="PCMModel.GroupOrganisation" FromRole="Organisations" ToRole="Groups" />
         </EntityType>
         <Association Name="FK_Contacts_Organisations">
           <End Type="PCMModel.Organisations" Role="Organisations" Multiplicity="0..1" />
@@ -470,22 +563,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Contacts" Relationship="PCMModel.GroupContact" FromRole="Groups" ToRole="Contacts" />
+          <NavigationProperty Name="Organisations" Relationship="PCMModel.GroupOrganisation" FromRole="Groups" ToRole="Organisations" />
+        </EntityType>
+        <Association Name="GroupContact">
+          <End Type="PCMModel.Contacts" Role="Contacts" Multiplicity="*" />
+          <End Type="PCMModel.Groups" Role="Groups" Multiplicity="*" />
+        </Association>
+        <Association Name="GroupOrganisation">
+          <End Type="PCMModel.Groups" Role="Groups" Multiplicity="*" />
+          <End Type="PCMModel.Organisations" Role="Organisations" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="PCMModelStoreContainer" CdmEntityContainer="PCMEntities">
-          <EntitySetMapping Name="C__MigrationHistory">
-            <EntityTypeMapping TypeName="PCMModel.C__MigrationHistory">
-              <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AspNetRoles">
             <EntityTypeMapping TypeName="PCMModel.AspNetRoles">
               <MappingFragment StoreEntitySet="AspNetRoles">
@@ -593,6 +696,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="PCMModel.Groups">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="GroupContact" TypeName="PCMModel.GroupContact" StoreEntitySet="GroupContact">
+            <EndProperty Name="Groups">
+              <ScalarProperty Name="Id" ColumnName="FkGroupId" />
+            </EndProperty>
+            <EndProperty Name="Contacts">
+              <ScalarProperty Name="Id" ColumnName="FkContactId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="GroupOrganisation" TypeName="PCMModel.GroupOrganisation" StoreEntitySet="GroupOrganisation">
+            <EndProperty Name="Organisations">
+              <ScalarProperty Name="Id" ColumnName="FkOrganisationId" />
+            </EndProperty>
+            <EndProperty Name="Groups">
+              <ScalarProperty Name="Id" ColumnName="FkGroupId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

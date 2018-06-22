@@ -14,6 +14,12 @@ namespace Panacea.Communcation.Management.Business.EFModels
     
     public partial class Contacts
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Contacts()
+        {
+            this.Groups = new HashSet<Groups>();
+        }
+    
         public int Id { get; set; }
         public Nullable<int> FkOrganisationId { get; set; }
         public string Title { get; set; }
@@ -36,5 +42,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
     
         public virtual RefStatus RefStatus { get; set; }
         public virtual Organisations Organisations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Groups> Groups { get; set; }
     }
 }
