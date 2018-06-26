@@ -26,9 +26,6 @@ for (var selector in config) {
 }
 
 
-// Call this method on pages that have data tables.
-
-
 
 
 

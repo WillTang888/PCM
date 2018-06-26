@@ -235,6 +235,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ContactViewModels.cs" />
     <Compile Include="Models\DeleteConfirmationInfo.cs" />
+    <Compile Include="Models\GroupViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrganisationViewModels.cs" />
@@ -1300,6 +1301,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.2.debug.js" />
+    <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\plugins\blueimp\jquery.blueimp-gallery.min.js" />
     <Content Include="Scripts\plugins\bootstrap-markdown\bootstrap-markdown.js" />
@@ -1842,6 +1845,7 @@
     <Content Include="Views\Contacts\DisplayContact.cshtml" />
     <Content Include="Views\Interactions\Releases.cshtml" />
     <Content Include="Views\Interactions\Assets.cshtml" />
+    <Content Include="Views\Contacts\AddGroup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

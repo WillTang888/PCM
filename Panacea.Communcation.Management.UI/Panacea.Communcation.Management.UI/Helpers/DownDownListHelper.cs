@@ -31,7 +31,18 @@ namespace Panacea.Communcation.Management.UI.Helpers
             };
         }
 
-        public static List<SelectListItem> GetOrganisationSelectList()
+        public static List<SelectListItem> GetContactsSelectList()
+        {
+            var contactService = new ContactService();
+
+            var listOfContacts = contactService.GetAllActive().Select(y => new SelectListItem() { Text = y.FirstName + " " + y.LastName, Value = y.Id.ToString() }).ToList();
+
+            listOfContacts.Insert(0, new SelectListItem { Text = "", Value = "0" });
+
+            return listOfContacts;
+        }
+    
+    public static List<SelectListItem> GetOrganisationSelectList()
         {
             var organisationService = new OrganisationService();
             var listOfOrgs = new List<SelectListItem>();

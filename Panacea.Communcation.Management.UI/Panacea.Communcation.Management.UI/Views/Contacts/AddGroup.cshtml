@@ -1,0 +1,195 @@
+﻿@model Panacea.Communcation.Management.UI.Models.AddGroupVM
+
+@{
+    ViewBag.Title = "Add Group";
+}
+
+@section Styles {
+    @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
+    @Styles.Render("~/Content/plugins/chosen/chosenStyles")
+}
+
+<div class="animated fadeInRight">
+    <div class="ibox">
+        <div class="ibox-content">
+
+        @using (Html.BeginForm("AddGroup", "Contacts", FormMethod.Post, new {@Id = "FormAddGroup", @class = "form-horizontal", role = "form"}))
+        {
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name, new {@class = "control-label col-md-3"})
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Name, new {@class = "form-control input-sm"})
+                            @Html.ValidationMessageFor(m => m.Name, "", new {@class = "text-danger"})
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description, new {@class = "control-label col-md-3"})
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.Description, new {@class = "form-control input-sm"})
+                        </div>
+                    </div>                
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">Search Contact</label>
+                        <div class="col-sm-9" id="searchDiv">
+                            <select id="ContactSearch" class="chosen-select" name="ContactSearch" data-bind="options: availableOptions, value: selectedContactValue, optionsCaption: 'Search Field'">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+
+                    <table id="dt-Cpls" class="table table-striped table-bordered table-hover" style="width: 100%" data-bind="visible: GroupInfo.Contacts().length">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Job Title</th>
+                                <th>Organisation</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: GroupInfo.Contacts">
+                            <tr class="text-center">
+                                <td>
+                                    <span data-bind="text: Id"></span>
+                                </td>
+                                <td>
+                                    <span data-bind="text: Name"></span>
+                                </td>
+                                <td>
+                                    <span data-bind="text: Position"></span>
+                                </td>
+                                <td>
+                                    <span data-bind="text: Organisation"></span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-primary" type="button" data-bind="click: $root.removeCpl">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+  
+        }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/plugins/dataTables")
+    @Scripts.Render("~/plugins/chosen")
+    <script src="~/Scripts/knockout-3.4.2.js"></script>
+    <script src="~/Scripts/Custom/global.js"></script>
+
+    <script type="text/javascript">
+
+        //Represents a selected contact that is shown in the table
+        function SingleContact(id, name, position, organisation) {
+            var self = this;
+            self.Id = id;
+            self.Name = name;
+            self.Position = position;
+            self.Organisation = organisation;
+        }
+
+        function AddGroupViewModel() {
+            var self = this;
+            self.saveCompleted = ko.observable(false);
+            self.sending = ko.observable(false);
+
+            // For Contact Search Dropdown
+            self.availableOptions = [];
+            self.selectedContactValue = ko.observable();
+            self.searchString = ko.observable();
+
+            // Contact Drop Down Change Event
+            self.selectedContactValue.subscribe(function (newValue) {
+                //alert("Contact Changed - " + newValue);
+                var url = '@Url.Action("GetContactInfo")/' + newValue;
+
+                $.ajax({
+                    url: url,
+                    dataType: "json",
+                    success: function (data) {
+                        var currentContacts = ko.toJS(self.GroupInfo.Contacts); // convert to normal array
+                        var isContactAlreadyAdded = currentContacts.filter(function (item) { return (item.Id == newValue); }); // see if version is already added to list
+
+                        if (isContactAlreadyAdded.length == 0) {
+                            self.GroupInfo.Contacts.push(new SingleContact(newValue, data.Name, data.JobTitle, data.Organisation));
+                        }
+                    }
+                });
+            });
+
+            // Search when you type
+            self.callAjax = function () {
+                var stringLength = self.searchString().length;
+
+                if (stringLength > 2) {
+
+                    var url = '@Url.Action("SearchContacts")?searchString=' + self.searchString();
+
+                    $.ajax({
+                        url: url,
+                        dataType: "json",
+                        success: function (data) {
+
+                            $('#ContactSearch').find('option').remove().end(); // Empty Select List
+
+                            // Fill Up Select List
+                            var list = $("#ContactSearch");
+                            list.append(new Option("", "")); // Add Empty Option (Needed so search field is active)
+
+                            $.each(data, function (index, item) {
+                                list.append(new Option(item.name, item.id));
+                            });
+
+                            $('#ContactSearch').trigger("chosen:updated");
+                            $('#ContactSearch_chosen').find('input').val(self.searchString());
+                        }
+
+                    }); // end Ajax
+                } // end If
+            }
+
+            self.removeCpl = function (contact) { self.GroupInfo.Contacts.remove(contact) }
+
+            self.GroupInfo = {
+                GroupName: ko.observable(),
+                GroupDescription: ko.observable(),
+                Contacts: ko.observableArray(),
+            };
+
+        }
+
+        $(document).ready(function() {
+            $('#ContactSearch_chosen').find('input').attr("data-bind", "textInput: searchString, event: { input: callAjax }");
+            var viewModel = new AddGroupViewModel();
+            ko.applyBindings(viewModel);
+        });
+
+    </script>
+    @Scripts.Render("~/bundles/custom")
+}

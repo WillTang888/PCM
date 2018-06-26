@@ -196,6 +196,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
         }
         #endregion "Contacts"
 
+        #region "Organisations"
         public ActionResult Organisations()
         {
             var model = new OrganisationListVM();
@@ -357,9 +358,52 @@ namespace Panacea.Communcation.Management.UI.Controllers
             return View(model);
         }
 
+        #endregion "Organisations"
+
         public ActionResult Groups()
         {
-            return View();
+            var model = new List<GroupGridItemVM>();
+            model.Add(new GroupGridItemVM() { Id = 1, Name = "Business", Description = "Local Businesses in the region.", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 13, OrganisationCount = 1} );
+            model.Add(new GroupGridItemVM() { Id = 2, Name = "Housing", Description = "", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 4, OrganisationCount = 0 });
+            model.Add(new GroupGridItemVM() { Id = 3, Name = "Social Behaviour", Description = "Social Behaviour", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 2, OrganisationCount = 2 });
+            model.Add(new GroupGridItemVM() { Id = 4, Name = "Press Release", Description = "UK Press release", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 7, OrganisationCount = 0 });
+            return View(model);
+        }
+
+        public ActionResult AddGroup()
+        {
+            var model = new AddGroupVM();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddGroup(AddGroupVM model)
+        {
+            return RedirectToAction("Groups");
+        }
+
+        [OutputCache(NoStore = true, Duration = 0)]
+        public JsonResult SearchContacts(string searchString)
+        {
+            var searchResult = contactService.SearchContacts(searchString);
+      
+            return Json(searchResult.Select(x => new
+            {
+                id = x.Id,
+                name = x.FirstName + " " + x.LastName + " (" + x.Organisations.Name + ")"
+            }), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetContactInfo(int id)
+        {
+            var contact = contactService.GetById(id);
+
+            return Json(new
+                { Id = contact.Id,
+                  Name = contact.FirstName + " " + contact.LastName,
+                  JobTitle = contact.JobTitle,
+                  Organisation = contact.Organisations.Name
+            }, JsonRequestBehavior.AllowGet);
         }
     }
 }

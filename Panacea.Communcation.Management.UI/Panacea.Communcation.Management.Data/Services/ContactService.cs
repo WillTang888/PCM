@@ -11,6 +11,11 @@ namespace Panacea.Communcation.Management.Business.Services
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
 
+        public List<Contacts> GetAllActive()
+        {
+            return unitOfWork.ContactRepository.Get(x => x.FkRefStatusId == 1).ToList();
+        }
+
         public Contacts GetById(int id)
         {
             return unitOfWork.ContactRepository.GetByID(id);
@@ -38,6 +43,15 @@ namespace Panacea.Communcation.Management.Business.Services
         {
             unitOfWork.ContactRepository.Delete(id);
             unitOfWork.Save();
+        }
+
+        public List<Contacts> SearchContacts(string searchString)
+        {
+            string lcSearchString = searchString.ToLower();
+            return unitOfWork.ContactRepository.Get(x => x.FkRefStatusId == 1 && ( x.FirstName.ToLower().Contains(lcSearchString) || 
+                                                                                   x.LastName.ToLower().Contains(lcSearchString) || 
+                                                                                   x.Organisations.Name.ToLower().Contains(lcSearchString)) 
+                                                                                    ).ToList();
         }
 
         public void Dispose()
