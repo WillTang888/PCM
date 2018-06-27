@@ -360,6 +360,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
 
         #endregion "Organisations"
 
+        #region "Groups"
         public ActionResult Groups()
         {
             var model = new List<GroupGridItemVM>();
@@ -401,9 +402,37 @@ namespace Panacea.Communcation.Management.UI.Controllers
             return Json(new
                 { Id = contact.Id,
                   Name = contact.FirstName + " " + contact.LastName,
+                  Email = contact.Email, 
                   JobTitle = contact.JobTitle,
                   Organisation = contact.Organisations.Name
             }, JsonRequestBehavior.AllowGet);
         }
+
+        [OutputCache(NoStore = true, Duration = 0)]
+        public JsonResult SearchOrganisations(string searchOrgString)
+        {
+            var searchResult = organisationService.SearchOrganisation(searchOrgString);
+
+            return Json(searchResult.Select(x => new
+            {
+                id = x.Id,
+                name = x.Name       
+            }), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetOrganisationInfo(int id)
+        {
+            var org = organisationService.GetById(id);
+
+            return Json(new
+            {
+                Id = org.Id,
+                Name = org.Name,
+                ContactCount = org.Contacts.Count,
+                Country = org.Country
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion "Groups"
     }
 }

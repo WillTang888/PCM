@@ -44,6 +44,12 @@ namespace Panacea.Communcation.Management.Business.Services
             unitOfWork.Save();
         }
 
+        public List<Organisations> SearchOrganisation(string searchOrgString)
+        {
+            string lcSearchString = searchOrgString.ToLower();
+            return unitOfWork.OrganisationRepository.Get(x => x.FkRefStatusId == 1 && x.Name.ToLower().Contains(lcSearchString)).ToList();
+        }
+
         public void Dispose()
         {
             ((IDisposable)unitOfWork).Dispose();

@@ -22,6 +22,7 @@ namespace Panacea.Communcation.Management.UI.Models
     {
         public AddGroupVM()
         {
+            Organisations = new List<SelectedOrganisation>();
             Contacts = new List<SelectedContact>();
         }
 
@@ -33,7 +34,8 @@ namespace Panacea.Communcation.Management.UI.Models
         [Display(Name = "Group Description")]
         public string Description { get; set; }
 
-        public List<SelectedContact> Contacts { get; set; }
+        public List<SelectedOrganisation> Organisations { get; set; } // Stores Selected Organisations
+        public List<SelectedContact> Contacts { get; set; } // Stores Selected Contacts
     }
 
     public class SelectedContact
@@ -45,5 +47,11 @@ namespace Panacea.Communcation.Management.UI.Models
         public string Organisation { get; set; }
     }
 
-
+    public class SelectedOrganisation
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int ContactCount { get; set; }
+        public string Country { get; set; }
+    }
 }
