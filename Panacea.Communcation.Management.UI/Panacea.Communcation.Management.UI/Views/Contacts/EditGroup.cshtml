@@ -1,4 +1,4 @@
-﻿@model Panacea.Communcation.Management.UI.Models.AddGroupVM
+﻿@model Panacea.Communcation.Management.UI.Models.GroupInfoVM
 
 @{
     ViewBag.Title = "Edit Group";
@@ -204,7 +204,7 @@
 
             self.successfulSave = function () {
                 self.saveCompleted(true);
-                location.href = '@Url.Action("Groups", "Contacts")';
+                location.href = '@Url.Action("EditGroup", "Contacts")';
             };
 
             self.errorSave = function () {

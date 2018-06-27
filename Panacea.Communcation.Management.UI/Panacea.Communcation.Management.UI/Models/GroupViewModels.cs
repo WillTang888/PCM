@@ -18,9 +18,9 @@ namespace Panacea.Communcation.Management.UI.Models
         public string Description { get; set; }
     }
 
-    public class AddGroupVM
+    public class GroupInfoVM
     {
-        public AddGroupVM()
+        public GroupInfoVM()
         {
             Organisations = new List<SelectedOrganisation>();
             Contacts = new List<SelectedContact>();

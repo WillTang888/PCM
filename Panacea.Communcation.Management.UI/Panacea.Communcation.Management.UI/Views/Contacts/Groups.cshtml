@@ -42,7 +42,7 @@
                                     <a href="@Url.Action("EditGroup", "Contacts")/@item.Id" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
                                 </td>
                                 <td>
-                                    <button class="btn btn-xs btn-primary DeleteBtn" type="button"><i class="fa fa-trash"></i> Delete</button>
+                                    <button class="btn btn-xs btn-primary DeleteBtn" type="button" data-id="@item.Id" data-confirmation="@Url.Action("DeleteGroupConfirmation")/@item.Id"><i class="fa fa-trash"></i> Delete</button>
                                 </td>
                             </tr>
                         }
@@ -62,6 +62,16 @@
 
         $(document).ready(function () {
             InitDataTable(); // Method in Global.js
+
+            // Delete Group
+            $(document).on('click', '.DeleteBtn', function () {
+                var url = $(this).data('confirmation');
+
+                $.get(url, function (data) {
+                    $("body").prepend(data);
+                    $('#modal-ConfirmDelete').modal('show');
+                });
+            });
         });
 
     </script>

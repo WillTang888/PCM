@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Panacea.Communcation.Management.Business.Services;
 using Panacea.Communcation.Management.UI.Models;
 using Panacea.Communcation.Management.Business.EFModels;
+//using Panacea.Communcation.Management.Business.Models;
 
 namespace Panacea.Communcation.Management.UI.Controllers
 {
@@ -381,12 +382,12 @@ namespace Panacea.Communcation.Management.UI.Controllers
 
         public ActionResult AddGroup()
         {
-            var model = new AddGroupVM();
+            var model = new GroupInfoVM();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult AddGroup(AddGroupVM model)
+        public JsonResult AddGroup(GroupInfoVM model)
         {
             if (ModelState.IsValid)
             {
@@ -419,12 +420,11 @@ namespace Panacea.Communcation.Management.UI.Controllers
             }
         }
 
-
         public ActionResult EditGroup(int id)
         {
             var eFGroup = groupService.GetById(id);
 
-            var model = new AddGroupVM();
+            var model = new GroupInfoVM();
             model.Id = eFGroup.Id;
             model.Name = eFGroup.Name;
             model.Description = eFGroup.Description;
@@ -450,9 +450,61 @@ namespace Panacea.Communcation.Management.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditGroup(AddGroupVM model)
+        public JsonResult EditGroup(GroupInfoVM model)
         {
-            return null;
+            if (ModelState.IsValid)
+            {
+                try
+                {                   
+                    Groups eFgroup = groupService.GetById(model.Id);
+                    eFgroup.Name = model.Name;
+                    eFgroup.Description = model.Description;
+                    eFgroup.DateAdded = DateTime.Now;
+                    eFgroup.DateModified = DateTime.Now;
+                    eFgroup.FkRefStatusId = (int)StatusEnum.Active;
+
+                    groupService.RemoveAllContacts(model.Id); // DBCONTEXT SAVE
+                    model.Contacts.ForEach(x => eFgroup.Contacts.Add(groupService.GetContactById(x.Id)));
+
+                    groupService.RemoveAllOrganisations(model.Id); // DBCONTEXT SAVE                   
+                    model.Organisations.ForEach(x => eFgroup.Organisations.Add(groupService.GetOrganisationById(x.Id)));
+
+                    groupService.Update(eFgroup);
+
+                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.AddedSuccessfully });
+                }
+                catch (Exception e)
+                {
+                    //throw;
+                    return Json(new { status = CommonConstants.Error, message = CommonConstants.SomethingWentWrong });
+                }
+            }
+            else
+            {
+                return Json(new { status = CommonConstants.Error, message = CommonConstants.FailedValidation });
+            }
+        }
+
+        public ActionResult DeleteGroupConfirmation(int id)
+        {
+            DeleteConfirmationInfo model = new DeleteConfirmationInfo();
+            model.Id = id.ToString();
+            model.ModalTitle = "Delete";
+            model.DeleteAction = "DeleteGroup";
+            model.DeleteController = "Contacts";
+            return PartialView("_ModalDeleteConfirmation", model);
+
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public ActionResult DeleteGroup(int id)
+        {
+            var groupToDelete = groupService.GetById(id);
+            groupToDelete.FkRefStatusId = (int)StatusEnum.Deleted;
+            groupService.Update(groupToDelete);
+
+            return RedirectToAction("Groups");
         }
 
         [OutputCache(NoStore = true, Duration = 0)]

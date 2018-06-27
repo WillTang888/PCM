@@ -34,12 +34,13 @@ namespace Panacea.Communcation.Management.Business.Services
 
         public void Update(Groups grp)
         {
-
+            unitOfWork.GroupRepository.Update(grp);
+            unitOfWork.Save();
         }
 
         public void DeleteById(int id)
         {
-
+            unitOfWork.GroupRepository.Delete(id);
         }
 
         public Contacts GetContactById(int id)
@@ -50,6 +51,32 @@ namespace Panacea.Communcation.Management.Business.Services
         public Organisations GetOrganisationById(int id)
         {
             return unitOfWork.OrganisationRepository.GetByID(id);
+        }
+        
+        public void RemoveAllContacts(int id)
+        {
+            var group = GetById(id);
+            var groupContacts = group.Contacts.ToList();
+
+            foreach (var contact in groupContacts)
+            {
+                group.Contacts.Remove(contact);
+            }
+
+            unitOfWork.Save();
+        }
+
+        public void RemoveAllOrganisations(int id)
+        {
+            var group = GetById(id);
+            var groupOrganisations = group.Organisations.ToList();
+
+            foreach (var org in groupOrganisations)
+            {
+                group.Organisations.Remove(org);
+            }
+
+            unitOfWork.Save();
         }
 
         public void Dispose()
