@@ -90,6 +90,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\OrganisationService.cs" />
     <Compile Include="UnitOfWork\GenericRepository.cs" />
     <Compile Include="UnitOfWork\UnitOfWork.cs" />

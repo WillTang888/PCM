@@ -1,7 +1,7 @@
 ﻿@model Panacea.Communcation.Management.UI.Models.AddGroupVM
 
 @{
-    ViewBag.Title = "Add Group";
+    ViewBag.Title = "Edit Group";
 }
 
 @section Styles {
@@ -10,6 +10,7 @@
 }
 
 @Html.Partial("_GroupInfo", Model)
+
 
 @section Scripts {
     @Scripts.Render("~/plugins/dataTables")
@@ -36,7 +37,7 @@
             self.Country = country;
         }
 
-        function AddGroupViewModel() {
+        function AddGroupViewModel(model) {
             var self = this;
             self.saveCompleted = ko.observable(false);
             self.sending = ko.observable(false);
@@ -168,10 +169,11 @@
             self.removeContact = function(contact) { self.GroupInfo.Contacts.remove(contact) }
 
             self.GroupInfo = {
-                Name: ko.observable(),
-                Description: ko.observable(),
-                Contacts: ko.observableArray(),
-                Organisations: ko.observableArray()
+                Id: ko.observable(model.Id),
+                Name: ko.observable(model.Name),
+                Description: ko.observable(model.Description),
+                Contacts: ko.observableArray(model.Contacts),
+                Organisations: ko.observableArray(model.Organisations)
             };
 
             self.validateAndSave = function (form) {
@@ -182,13 +184,9 @@
 
                self.sending(true);
 
-                //alert(ko.toJSON(self.GroupInfo));
-
                 $.ajax({
-                    url: '@Url.Action("AddGroup")',
+                    url: '@Url.Action("EditGroup")',
                     type: 'post',
-                    //contentType: 'application/x-www-form-urlencoded',
-                    //data: ko.toJS(self.GroupInfo),
                     contentType: 'application/json',          //Doesnt Work with AntiForgeryToken
                     data: ko.toJSON(self.GroupInfo),         //Doesnt Work with AntiForgeryToken
                     cache: false,
@@ -216,7 +214,6 @@
             self.ajaxComplete = function () {
                 self.sending(false);
             };
-
         }
 
         $(document).ready(function () {
@@ -228,7 +225,7 @@
             $('#OrganisationSearch_chosen').find('input')
                 .attr("data-bind", "textInput: searchOrgString, event: { input: callAjaxOrganisation }");
 
-            var viewModel = new AddGroupViewModel();
+            var viewModel = new AddGroupViewModel(@Html.HtmlConvertToJson(Model));
             ko.applyBindings(viewModel);
         });
 

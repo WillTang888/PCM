@@ -115,6 +115,7 @@
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="DateAdded" Type="datetime" Nullable="false" />
           <Property Name="DateModified" Type="datetime" Nullable="false" />
+          <Property Name="FkRefStatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Organisations">
           <Key>
@@ -271,6 +272,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Groups_RefStatus">
+          <End Role="RefStatus" Type="Self.RefStatus" Multiplicity="1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="FkRefStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Organisations_RefStatus">
           <End Role="RefStatus" Type="Self.RefStatus" Multiplicity="1" />
           <End Role="Organisations" Type="Self.Organisations" Multiplicity="*" />
@@ -335,6 +348,10 @@
           <AssociationSet Name="FK_GroupOrganisation_Organisations" Association="Self.FK_GroupOrganisation_Organisations">
             <End Role="Organisations" EntitySet="Organisations" />
             <End Role="GroupOrganisation" EntitySet="GroupOrganisation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_RefStatus" Association="Self.FK_Groups_RefStatus">
+            <End Role="RefStatus" EntitySet="RefStatus" />
+            <End Role="Groups" EntitySet="Groups" />
           </AssociationSet>
           <AssociationSet Name="FK_Organisations_RefStatus" Association="Self.FK_Organisations_RefStatus">
             <End Role="RefStatus" EntitySet="RefStatus" />
@@ -402,6 +419,7 @@
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Contacts" Relationship="PCMModel.FK_Contacts_RefStatus" FromRole="RefStatus" ToRole="Contacts" />
           <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Organisations_RefStatus" FromRole="RefStatus" ToRole="Organisations" />
+          <NavigationProperty Name="Groups" Relationship="PCMModel.FK_Groups_RefStatus" FromRole="RefStatus" ToRole="Groups" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -475,6 +493,10 @@
           <AssociationSet Name="GroupOrganisation" Association="PCMModel.GroupOrganisation">
             <End Role="Groups" EntitySet="Groups" />
             <End Role="Organisations" EntitySet="Organisations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Groups_RefStatus" Association="PCMModel.FK_Groups_RefStatus">
+            <End Role="RefStatus" EntitySet="RefStatus" />
+            <End Role="Groups" EntitySet="Groups" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contacts">
@@ -574,6 +596,8 @@
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Contacts" Relationship="PCMModel.GroupContact" FromRole="Groups" ToRole="Contacts" />
           <NavigationProperty Name="Organisations" Relationship="PCMModel.GroupOrganisation" FromRole="Groups" ToRole="Organisations" />
+          <Property Name="FkRefStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Groups_RefStatus" FromRole="Groups" ToRole="RefStatus" />
         </EntityType>
         <Association Name="GroupContact">
           <End Type="PCMModel.Contacts" Role="Contacts" Multiplicity="*" />
@@ -582,6 +606,18 @@
         <Association Name="GroupOrganisation">
           <End Type="PCMModel.Groups" Role="Groups" Multiplicity="*" />
           <End Type="PCMModel.Organisations" Role="Organisations" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_Groups_RefStatus">
+          <End Type="PCMModel.RefStatus" Role="RefStatus" Multiplicity="1" />
+          <End Type="PCMModel.Groups" Role="Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RefStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="FkRefStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -699,6 +735,7 @@
           <EntitySetMapping Name="Groups">
             <EntityTypeMapping TypeName="PCMModel.Groups">
               <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="FkRefStatusId" ColumnName="FkRefStatusId" />
                 <ScalarProperty Name="DateModified" ColumnName="DateModified" />
                 <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

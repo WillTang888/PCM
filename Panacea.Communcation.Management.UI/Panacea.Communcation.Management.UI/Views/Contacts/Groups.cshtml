@@ -18,12 +18,13 @@
                 <table class="table table-striped table-bordered table-hover dataTable">
                     <thead>
                         <tr class="text-center">
-                            <th>Name</th>
+                            <th>Group Name</th>
                             <th>Description</th>
                             <th>Modified Date</th>
                             <th>Modified By</th>
                             <th>Contacts</th>
                             <th>Organisations</th>
+                            <th></th>
                             <th></th>
                         </tr>
                     </thead>
@@ -37,6 +38,9 @@
                                 <td>@item.ModifiedBy</td>
                                 <td>@item.ContactCount</td>
                                 <td>@item.OrganisationCount</td>
+                                <td>
+                                    <a href="@Url.Action("EditGroup", "Contacts")/@item.Id" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                </td>
                                 <td>
                                     <button class="btn btn-xs btn-primary DeleteBtn" type="button"><i class="fa fa-trash"></i> Delete</button>
                                 </td>

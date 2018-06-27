@@ -21,6 +21,7 @@
         <EntityTypeShape EntityType="PCMModel.Groups" Width="1.5" PointX="10.125" PointY="10.125" />
         <AssociationConnector Association="PCMModel.GroupContact" />
         <AssociationConnector Association="PCMModel.GroupOrganisation" />
+        <AssociationConnector Association="PCMModel.FK_Groups_RefStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -19,6 +19,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         {
             this.Contacts = new HashSet<Contacts>();
             this.Organisations = new HashSet<Organisations>();
+            this.Groups = new HashSet<Groups>();
         }
     
         public int Id { get; set; }
@@ -28,5 +29,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public virtual ICollection<Contacts> Contacts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organisations> Organisations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Groups> Groups { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using Panacea.Communcation.Management.Business.Services;
@@ -13,6 +14,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
     {
         private ContactService contactService = new ContactService();
         private OrganisationService organisationService = new OrganisationService();
+        private GroupService groupService = new GroupService();
 
         #region "Contacts"
 
@@ -70,7 +72,7 @@ namespace Panacea.Communcation.Management.UI.Controllers
                 }
                 catch (Exception e)
                 {
-                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.SomethingWentWrong });
+                    return Json(new { status = CommonConstants.Error, message = CommonConstants.SomethingWentWrong });
                 }              
             }
             else
@@ -364,10 +366,16 @@ namespace Panacea.Communcation.Management.UI.Controllers
         public ActionResult Groups()
         {
             var model = new List<GroupGridItemVM>();
-            model.Add(new GroupGridItemVM() { Id = 1, Name = "Business", Description = "Local Businesses in the region.", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 13, OrganisationCount = 1} );
-            model.Add(new GroupGridItemVM() { Id = 2, Name = "Housing", Description = "", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 4, OrganisationCount = 0 });
-            model.Add(new GroupGridItemVM() { Id = 3, Name = "Social Behaviour", Description = "Social Behaviour", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 2, OrganisationCount = 2 });
-            model.Add(new GroupGridItemVM() { Id = 4, Name = "Press Release", Description = "UK Press release", ModifiedBy = "Adam Smith", ModifiedDate = DateTime.Now, ContactCount = 7, OrganisationCount = 0 });
+            model = groupService.GetGroupsForGrid().Select(y => new GroupGridItemVM {
+                Id = y.Id,
+                Name = y.Name,
+                Description = y.Description,
+                ModifiedBy = "Dave Smith",
+                ModifiedDate = y.DateModified,
+                ContactCount = y.Contacts.Count,
+                OrganisationCount = y.Organisations.Count
+            }).ToList();
+
             return View(model);
         }
 
@@ -380,7 +388,71 @@ namespace Panacea.Communcation.Management.UI.Controllers
         [HttpPost]
         public ActionResult AddGroup(AddGroupVM model)
         {
-            return RedirectToAction("Groups");
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //convert model to ef model
+                    Groups eFgroup = new Groups();
+                    eFgroup.Name = model.Name;
+                    eFgroup.Description = model.Description;
+                    eFgroup.DateAdded = DateTime.Now;
+                    eFgroup.DateModified = DateTime.Now;
+                    eFgroup.FkRefStatusId = (int)StatusEnum.Active;
+
+                    model.Contacts.ForEach(x => eFgroup.Contacts.Add(groupService.GetContactById(x.Id)));
+                    model.Organisations.ForEach(x => eFgroup.Organisations.Add(groupService.GetOrganisationById(x.Id)));
+
+                    var group = groupService.Insert(eFgroup);
+
+                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.AddedSuccessfully });
+                }
+                catch (Exception e)
+                {
+                    throw;
+                    //return Json(new { status = CommonConstants.Error, message = CommonConstants.SomethingWentWrong });
+                }
+            }
+            else
+            {
+                return Json(new { status = CommonConstants.Error, message = CommonConstants.FailedValidation });
+            }
+        }
+
+
+        public ActionResult EditGroup(int id)
+        {
+            var eFGroup = groupService.GetById(id);
+
+            var model = new AddGroupVM();
+            model.Id = eFGroup.Id;
+            model.Name = eFGroup.Name;
+            model.Description = eFGroup.Description;
+
+            model.Contacts = eFGroup.Contacts.Select(y => new SelectedContact
+            {
+                Id = y.Id,
+                Name = y.FirstName + " " + y.LastName,
+                Email = y.Email,
+                JobTitle = y.JobTitle,
+                Organisation = y.Organisations.Name
+            }).ToList();
+
+            model.Organisations = eFGroup.Organisations.Select(y => new SelectedOrganisation
+            {
+                Id = y.Id,
+                Name = y.Name,
+                ContactCount = y.Contacts.Count,
+                Country = y.Country
+            }).ToList();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditGroup(AddGroupVM model)
+        {
+            return null;
         }
 
         [OutputCache(NoStore = true, Duration = 0)]

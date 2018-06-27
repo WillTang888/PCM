@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
+using Newtonsoft.Json;
 
 namespace Panacea.Communcation.Management.UI
 {
@@ -34,5 +35,16 @@ namespace Panacea.Communcation.Management.UI
             return currentAction;
         }
 
-	}
+        public static HtmlString HtmlConvertToJson(this HtmlHelper htmlhelper, object model)
+        {
+            var settings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Formatting = Formatting.Indented
+            };
+
+            return new HtmlString(JsonConvert.SerializeObject(model, settings));
+        }
+
+    }
 }

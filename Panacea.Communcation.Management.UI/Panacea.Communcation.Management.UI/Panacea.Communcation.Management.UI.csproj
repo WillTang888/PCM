@@ -1846,6 +1846,8 @@
     <Content Include="Views\Interactions\Releases.cshtml" />
     <Content Include="Views\Interactions\Assets.cshtml" />
     <Content Include="Views\Contacts\AddGroup.cshtml" />
+    <Content Include="Views\Contacts\EditGroup.cshtml" />
+    <Content Include="Views\Contacts\_GroupInfo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

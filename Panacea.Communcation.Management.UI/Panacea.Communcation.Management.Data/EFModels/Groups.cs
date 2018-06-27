@@ -26,10 +26,12 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public string Description { get; set; }
         public System.DateTime DateAdded { get; set; }
         public System.DateTime DateModified { get; set; }
+        public int FkRefStatusId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Contacts> Contacts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Organisations> Organisations { get; set; }
+        public virtual RefStatus RefStatus { get; set; }
     }
 }

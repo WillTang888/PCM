@@ -13,10 +13,12 @@ namespace Panacea.Communcation.Management.Business
 
         private GenericRepository<Contacts> contactRepository;
         private GenericRepository<Organisations> organisationRepository;
+        private GenericRepository<Groups> groupRepository;
         private GenericRepository<RefStatus> refStatusRepository;
 
         public GenericRepository<Contacts> ContactRepository => this.contactRepository ?? new GenericRepository<Contacts>(context);
         public GenericRepository<Organisations> OrganisationRepository => this.organisationRepository ?? new GenericRepository<Organisations>(context);
+        public GenericRepository<Groups> GroupRepository => this.groupRepository ?? new GenericRepository<Groups>(context);
         public GenericRepository<RefStatus> RefStatusRepository => this.refStatusRepository ?? new GenericRepository<RefStatus>(context);
 
 
