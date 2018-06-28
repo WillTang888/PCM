@@ -33,5 +33,12 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public virtual DbSet<Contacts> Contacts { get; set; }
         public virtual DbSet<Organisations> Organisations { get; set; }
         public virtual DbSet<Groups> Groups { get; set; }
+        public virtual DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public virtual DbSet<Enquiry> Enquiry { get; set; }
+        public virtual DbSet<RefEnquiryStatus> RefEnquiryStatus { get; set; }
+        public virtual DbSet<RefEnquiryType> RefEnquiryType { get; set; }
+        public virtual DbSet<RefOutcome> RefOutcome { get; set; }
+        public virtual DbSet<RefResponseMethod> RefResponseMethod { get; set; }
+        public virtual DbSet<Team> Team { get; set; }
     }
 }

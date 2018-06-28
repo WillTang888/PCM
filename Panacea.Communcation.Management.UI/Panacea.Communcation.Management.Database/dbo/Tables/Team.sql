@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Team]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] VARCHAR(MAX) NOT NULL, 
+    [Description] VARCHAR(MAX) NOT NULL
+)

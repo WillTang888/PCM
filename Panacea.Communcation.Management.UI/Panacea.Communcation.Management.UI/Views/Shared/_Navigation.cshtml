@@ -70,7 +70,7 @@
                     <li class="@Html.IsSelected(action: "View1")"><a href="@Url.Action("View1", "Settings")">Item v.1</a></li>
                 </ul>
             </li>
-            <li class="@Html.IsSelected(controller: "UIElements")">
+            @*<li class="@Html.IsSelected(controller: "UIElements")">
                 <a href="#"><i class="fa fa-flask"></i> <span class="nav-label" data-i18n="nav.uielements">UI Elements</span><span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse @Html.IsSelected(controller: "UIElements", cssClass: "in")">
                     <li class="@Html.IsSelected(action: "Typography")"><a href="@Url.Action("Typography", "UIElements")">Typography</a></li>
@@ -85,7 +85,7 @@
                     <li class="@Html.IsSelected(action: "HelperClasses")"><a href="@Url.Action("HelperClasses", "UIElements")">Helper css classes</a></li>
                     <li class="@Html.IsSelected(action: "BadgesLabelsProgress")"><a href="@Url.Action("BadgesLabelsProgress", "UIElements")">Badges, Labels, Progress</a></li>
                 </ul>
-            </li>
+            </li>*@
             @*<li class="@Html.IsSelected(controller: "Layouts")">
             <a href="@Url.Action("Index", "Layouts")"><i class="fa fa-diamond"></i> <span class="nav-label" data-i18n="nav.layouts">Layouts</span> <span class="label label-primary pull-right">NEW</span></a>
         </li>

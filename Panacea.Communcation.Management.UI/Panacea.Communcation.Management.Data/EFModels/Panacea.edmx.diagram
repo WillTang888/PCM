@@ -22,6 +22,20 @@
         <AssociationConnector Association="PCMModel.GroupContact" />
         <AssociationConnector Association="PCMModel.GroupOrganisation" />
         <AssociationConnector Association="PCMModel.FK_Groups_RefStatus" />
+        <EntityTypeShape EntityType="PCMModel.C__RefactorLog" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PCMModel.Enquiry" Width="1.5" PointX="12.5" PointY="7.25" />
+        <EntityTypeShape EntityType="PCMModel.RefEnquiryStatus" Width="1.5" PointX="10.25" PointY="4.75" />
+        <EntityTypeShape EntityType="PCMModel.RefEnquiryType" Width="1.5" PointX="10.25" PointY="14.625" />
+        <EntityTypeShape EntityType="PCMModel.RefOutcome" Width="1.5" PointX="10.25" PointY="16.875" />
+        <EntityTypeShape EntityType="PCMModel.RefResponseMethod" Width="1.5" PointX="10.25" PointY="19.25" />
+        <EntityTypeShape EntityType="PCMModel.Team" Width="1.5" PointX="10.25" PointY="7" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_Contacts" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_EnquiryType" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_Organisations" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_RefEnquiryStatus" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_RefOutcome" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_RefResponseMethod" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_Team" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

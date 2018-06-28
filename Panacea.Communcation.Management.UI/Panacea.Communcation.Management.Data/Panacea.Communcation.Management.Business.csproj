@@ -64,6 +64,12 @@
     <Compile Include="EFModels\Contacts.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>
+    <Compile Include="EFModels\C__RefactorLog.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\Enquiry.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFModels\Groups.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>
@@ -85,11 +91,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Panacea.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EFModels\RefEnquiryStatus.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\RefEnquiryType.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\RefOutcome.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\RefResponseMethod.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
     <Compile Include="EFModels\RefStatus.cs">
+      <DependentUpon>Panacea.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModels\Team.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ContactService.cs" />
+    <Compile Include="Services\EnquiryService.cs" />
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\OrganisationService.cs" />
     <Compile Include="UnitOfWork\GenericRepository.cs" />

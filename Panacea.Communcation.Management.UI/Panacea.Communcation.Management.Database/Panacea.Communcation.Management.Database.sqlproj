@@ -76,9 +76,16 @@
     <Build Include="dbo\Tables\Groups.sql" />
     <Build Include="dbo\Tables\GroupContact.sql" />
     <Build Include="dbo\Tables\GroupOrganisation.sql" />
+    <Build Include="dbo\Tables\Enquiry.sql" />
+    <Build Include="dbo\Tables\RefResponseMethod.sql" />
+    <Build Include="dbo\Tables\RefOutcome.sql" />
+    <Build Include="dbo\Tables\RefEnquiryStatus.sql" />
+    <Build Include="dbo\Tables\Team.sql" />
+    <Build Include="dbo\Tables\RefEnquiryType.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Panacea.Communcation.Management.Database.Local.publish.xml" />
+    <None Include="Panacea.Communcation.Management.Database.Dev.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="dbo\Scripts\PostDeployment1.sql" />

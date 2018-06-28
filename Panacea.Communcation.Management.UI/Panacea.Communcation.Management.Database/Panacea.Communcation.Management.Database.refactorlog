@@ -35,4 +35,88 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FkRefStatusId" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="192c4bba-3016-4046-b2f8-50f762ecd953" ChangeDateTime="06/28/2018 09:24:40">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[FKContactId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkContactId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="95820df4-c02c-441f-a2d9-f31a2c9c8533" ChangeDateTime="06/28/2018 09:29:07">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Summary" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ce8907b2-c9e6-4f2a-a504-122479683ead" ChangeDateTime="06/28/2018 09:29:15">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[InternalNotes]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="78efe0d4-8b12-4050-b2d6-5235f493c99d" ChangeDateTime="06/28/2018 09:32:57">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[Method]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ResponseMethod" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6f1f6ba6-30f4-41d3-8a5a-8e1cf0bdc442" ChangeDateTime="06/28/2018 09:42:19">
+    <Property Name="ElementName" Value="[dbo].[ResponseMethod].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ResponseMethod]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c6efa03a-37ba-4cb1-b9c6-91195bccd94a" ChangeDateTime="06/28/2018 09:46:53">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[ResponseMethod]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkRefResponseMethodId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0737e802-483e-4167-a90c-2c8d1c15bae4" ChangeDateTime="06/28/2018 09:47:06">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[Outcome]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkReOutcomeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5c227852-f962-4619-ad75-76916d20a425" ChangeDateTime="06/28/2018 14:31:35">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[UserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkUserId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a7553fed-49be-4651-9c92-b9911ccd670f" ChangeDateTime="06/28/2018 14:31:51">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[F]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkTeamId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="006bd584-a17c-4ef3-be58-f08ee2575cc1" ChangeDateTime="06/28/2018 14:43:52">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[FkReOutcomeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkRefOutcomeId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="99364c04-468f-46f3-acc2-ca8ef41c7a8d" ChangeDateTime="06/28/2018 14:48:04">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[FkEnquiryStatusId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkRefEnquiryStatusId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c92ca6ba-9174-40aa-b3a3-a25816ef48c0" ChangeDateTime="06/28/2018 14:51:48">
+    <Property Name="ElementName" Value="[dbo].[Enquiry].[FkTeamEnnquiryTypeId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Enquiry]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FkEnquiryTypeId" />
+  </Operation>
 </Operations>
