@@ -64,9 +64,6 @@
     <Compile Include="EFModels\Contacts.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>
-    <Compile Include="EFModels\C__RefactorLog.cs">
-      <DependentUpon>Panacea.tt</DependentUpon>
-    </Compile>
     <Compile Include="EFModels\Enquiry.cs">
       <DependentUpon>Panacea.tt</DependentUpon>
     </Compile>

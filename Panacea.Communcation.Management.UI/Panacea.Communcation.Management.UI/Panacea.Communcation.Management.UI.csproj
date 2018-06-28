@@ -237,6 +237,7 @@
     <Compile Include="Models\DeleteConfirmationInfo.cs" />
     <Compile Include="Models\GroupViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InteractionViewModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\OrganisationViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1849,6 +1850,7 @@
     <Content Include="Views\Contacts\AddGroup.cshtml" />
     <Content Include="Views\Contacts\EditGroup.cshtml" />
     <Content Include="Views\Contacts\_GroupInfo.cshtml" />
+    <Content Include="Views\Interactions\AddEnquiry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

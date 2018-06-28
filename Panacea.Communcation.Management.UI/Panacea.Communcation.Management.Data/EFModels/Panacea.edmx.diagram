@@ -4,31 +4,30 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="2b2dee0c8cb34ff98d626efad2070cb9" Name="Diagram1">
-        <EntityTypeShape EntityType="PCMModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" FillColor="OliveDrab" />
-        <EntityTypeShape EntityType="PCMModel.AspNetUserClaims" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" FillColor="OliveDrab" />
-        <EntityTypeShape EntityType="PCMModel.AspNetUserLogins" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" FillColor="OliveDrab" />
-        <EntityTypeShape EntityType="PCMModel.AspNetUsers" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" FillColor="OliveDrab" />
-        <EntityTypeShape EntityType="PCMModel.RefStatus" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+      <Diagram DiagramId="2b2dee0c8cb34ff98d626efad2070cb9" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="PCMModel.AspNetRoles" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.AspNetUserClaims" Width="1.5" PointX="4.75" PointY="0.5" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.AspNetUserLogins" Width="1.5" PointX="4.75" PointY="2.875" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.AspNetUsers" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" FillColor="OliveDrab" />
+        <EntityTypeShape EntityType="PCMModel.RefStatus" Width="1.5" PointX="1.375" PointY="6.625" IsExpanded="true" />
         <AssociationConnector Association="PCMModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="PCMModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="PCMModel.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="PCMModel.Contacts" Width="1.5" PointX="7.25" PointY="8.625" />
+        <EntityTypeShape EntityType="PCMModel.Contacts" Width="1.5" PointX="7.5" PointY="6.5" />
         <AssociationConnector Association="PCMModel.FK_Contacts_RefStatus" />
         <EntityTypeShape EntityType="PCMModel.Organisations" Width="1.5" PointX="5" PointY="6.5" />
         <AssociationConnector Association="PCMModel.FK_Contacts_Organisations" />
         <AssociationConnector Association="PCMModel.FK_Organisations_RefStatus" />
-        <EntityTypeShape EntityType="PCMModel.Groups" Width="1.5" PointX="10.125" PointY="10.125" />
+        <EntityTypeShape EntityType="PCMModel.Groups" Width="1.5" PointX="5" PointY="12" />
         <AssociationConnector Association="PCMModel.GroupContact" />
         <AssociationConnector Association="PCMModel.GroupOrganisation" />
         <AssociationConnector Association="PCMModel.FK_Groups_RefStatus" />
-        <EntityTypeShape EntityType="PCMModel.C__RefactorLog" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="PCMModel.Enquiry" Width="1.5" PointX="12.5" PointY="7.25" />
-        <EntityTypeShape EntityType="PCMModel.RefEnquiryStatus" Width="1.5" PointX="10.25" PointY="4.75" />
-        <EntityTypeShape EntityType="PCMModel.RefEnquiryType" Width="1.5" PointX="10.25" PointY="14.625" />
-        <EntityTypeShape EntityType="PCMModel.RefOutcome" Width="1.5" PointX="10.25" PointY="16.875" />
-        <EntityTypeShape EntityType="PCMModel.RefResponseMethod" Width="1.5" PointX="10.25" PointY="19.25" />
-        <EntityTypeShape EntityType="PCMModel.Team" Width="1.5" PointX="10.25" PointY="7" />
+        <EntityTypeShape EntityType="PCMModel.Enquiry" Width="1.5" PointX="10" PointY="6.5" FillColor="Fuchsia" />
+        <EntityTypeShape EntityType="PCMModel.RefEnquiryStatus" Width="1.5" PointX="10" PointY="3.75" FillColor="Fuchsia" />
+        <EntityTypeShape EntityType="PCMModel.RefEnquiryType" Width="1.5" PointX="12.625" PointY="10.625" FillColor="Fuchsia" />
+        <EntityTypeShape EntityType="PCMModel.RefOutcome" Width="1.5" PointX="12.625" PointY="8.625" FillColor="Fuchsia" />
+        <EntityTypeShape EntityType="PCMModel.RefResponseMethod" Width="1.5" PointX="12.625" PointY="12.625" FillColor="Fuchsia" />
+        <EntityTypeShape EntityType="PCMModel.Team" Width="1.5" PointX="12.625" PointY="6.5" FillColor="Fuchsia" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_Contacts" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_EnquiryType" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_Organisations" />
@@ -36,6 +35,7 @@
         <AssociationConnector Association="PCMModel.FK_Enquiry_RefOutcome" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_RefResponseMethod" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_Team" />
+        <AssociationConnector Association="PCMModel.FK_Enquiry_RefStatus" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

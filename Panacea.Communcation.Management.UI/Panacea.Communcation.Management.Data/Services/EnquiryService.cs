@@ -26,34 +26,24 @@ namespace Panacea.Communcation.Management.Business.Services
             return unitOfWork.EnquiryRepository.Get(x => x.FkRefStatusId == 1, null, "Organisations").ToList();
         }
 
-        public Contacts Insert(Contacts contact)
+        public Enquiry Insert(Enquiry enquiry)
         {
-            contact = unitOfWork.ContactRepository.Insert(contact);
+            enquiry = unitOfWork.EnquiryRepository.Insert(enquiry);
             unitOfWork.Save();
-            return contact;
+            return enquiry;
         }
 
-        public void Update(Contacts contact)
+        public void Update(Enquiry enquiry)
         {
-            unitOfWork.ContactRepository.Update(contact);
+            unitOfWork.EnquiryRepository.Update(enquiry);
             unitOfWork.Save();
         }
 
         public void DeleteById(int id)
         {
-            unitOfWork.ContactRepository.Delete(id);
+            unitOfWork.EnquiryRepository.Delete(id);
             unitOfWork.Save();
         }
-
-        public List<Contacts> SearchContacts(string searchString)
-        {
-            string lcSearchString = searchString.ToLower();
-            return unitOfWork.ContactRepository.Get(x => x.FkRefStatusId == 1 && (x.FirstName.ToLower().Contains(lcSearchString) ||
-                                                                                  x.LastName.ToLower().Contains(lcSearchString) ||
-                                                                                  x.Organisations.Name.ToLower().Contains(lcSearchString))
-            ).ToList();
-        }
-
 
         public void Dispose()
         {

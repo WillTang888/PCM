@@ -33,6 +33,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public System.DateTime DeadlineDate { get; set; }
         public Nullable<int> FkRelatedProjectId { get; set; }
         public Nullable<int> FkRelatedReleaseId { get; set; }
+        public Nullable<int> FkRefStatusId { get; set; }
     
         public virtual Contacts Contacts { get; set; }
         public virtual RefEnquiryType RefEnquiryType { get; set; }
@@ -41,5 +42,6 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public virtual RefOutcome RefOutcome { get; set; }
         public virtual RefResponseMethod RefResponseMethod { get; set; }
         public virtual Team Team { get; set; }
+        public virtual RefStatus RefStatus { get; set; }
     }
 }
