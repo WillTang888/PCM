@@ -68,8 +68,8 @@ namespace Panacea.Communcation.Management.UI.Controllers
                     eFContact.FkRefStatusId = (int)StatusEnum.Active;
                     eFContact.DateAdded = DateTime.Now;
                     eFContact.Description = model.Description;
-                    contactService.Insert(eFContact);
-                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.AddedSuccessfully });
+                    var addedContact = contactService.Insert(eFContact);
+                    return Json(new { status = CommonConstants.Ok, message = CommonConstants.AddedSuccessfully, id = addedContact.Id });
                 }
                 catch (Exception e)
                 {

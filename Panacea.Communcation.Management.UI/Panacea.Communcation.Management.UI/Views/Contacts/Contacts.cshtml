@@ -77,7 +77,7 @@
                     $.post(action, serializedForm,
                         function (result) {
                             if (result.status == "Ok") {
-                                var redirect = '@Url.Action("Contacts", "Contacts")';
+                                var redirect = '@Url.Action("DisplayContact", "Contacts")/' + result.id;
                                 window.location.href = redirect;
                             }
                             else {
