@@ -22,21 +22,21 @@
         <AssociationConnector Association="PCMModel.GroupContact" />
         <AssociationConnector Association="PCMModel.GroupOrganisation" />
         <AssociationConnector Association="PCMModel.FK_Groups_RefStatus" />
-        <EntityTypeShape EntityType="PCMModel.Enquiry" Width="1.5" PointX="10" PointY="6.5" FillColor="Fuchsia" />
         <EntityTypeShape EntityType="PCMModel.RefEnquiryStatus" Width="1.5" PointX="10" PointY="3.75" FillColor="Fuchsia" />
         <EntityTypeShape EntityType="PCMModel.RefEnquiryType" Width="1.5" PointX="12.625" PointY="10.625" FillColor="Fuchsia" />
         <EntityTypeShape EntityType="PCMModel.RefOutcome" Width="1.5" PointX="12.625" PointY="8.625" FillColor="Fuchsia" />
         <EntityTypeShape EntityType="PCMModel.RefResponseMethod" Width="1.5" PointX="12.625" PointY="12.625" FillColor="Fuchsia" />
         <EntityTypeShape EntityType="PCMModel.Team" Width="1.5" PointX="12.625" PointY="6.5" FillColor="Fuchsia" />
+        <EntityTypeShape EntityType="PCMModel.Enquiry" Width="1.5" PointX="10" PointY="7.125" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_Contacts" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_EnquiryType" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_Organisations" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_RefEnquiryStatus" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_RefOutcome" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_RefResponseMethod" />
-        <AssociationConnector Association="PCMModel.FK_Enquiry_Team" />
         <AssociationConnector Association="PCMModel.FK_Enquiry_RefStatus" />
-      </Diagram>
+        <AssociationConnector Association="PCMModel.FK_Enquiry_Team" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

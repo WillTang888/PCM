@@ -45,6 +45,38 @@ namespace Panacea.Communcation.Management.Business.Services
             unitOfWork.Save();
         }
 
+        #region "Enquiry Lookups"
+
+        public List<RefResponseMethod> GetEnquiryResponseMethods()
+        {
+            return unitOfWork.RefResponseMethod.Get().ToList();
+        }
+
+        public List<RefOutcome> GetEnquiryOutcomes()
+        {
+            return unitOfWork.RefOutcomeRepository.Get().ToList();
+        }
+
+        public List<RefEnquiryStatus> GetEnquiryStatuses()
+        {
+            return unitOfWork.RefEnquiryStatusRepository.Get().ToList();
+        }
+
+        public List<Team> GetEnquiryTeams()
+        {
+            return unitOfWork.TeamRepository.Get().ToList();
+        }
+
+        public List<RefEnquiryType> GetEnquiryTypes()
+        {
+            return unitOfWork.RefEnquiryTypeRepository.Get().ToList();
+        }
+        
+
+
+
+        #endregion "Enquiry Lookups"
+
         public void Dispose()
         {
             ((IDisposable)unitOfWork).Dispose();

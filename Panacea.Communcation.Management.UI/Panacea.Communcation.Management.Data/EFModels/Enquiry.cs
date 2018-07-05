@@ -41,7 +41,7 @@ namespace Panacea.Communcation.Management.Business.EFModels
         public virtual RefEnquiryStatus RefEnquiryStatus { get; set; }
         public virtual RefOutcome RefOutcome { get; set; }
         public virtual RefResponseMethod RefResponseMethod { get; set; }
-        public virtual Team Team { get; set; }
         public virtual RefStatus RefStatus { get; set; }
+        public virtual Team Team { get; set; }
     }
 }

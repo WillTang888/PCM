@@ -17,12 +17,29 @@ namespace Panacea.Communcation.Management.UI.Controllers
         }
 
         public ActionResult AddEnquiry()
-        {         
+        {
+            EnquiryVM model = new EnquiryVM();
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AddEnquiry(EnquiryVM model)
+        {
             return View();
         }
 
+        [HttpPost]
+        public ActionResult EditEnquiry(int id)
+        {
+            return View();
+        }
 
-
+        [HttpPost]
+        public ActionResult EditEnquiry(EnquiryVM model)
+        {
+            return RedirectToAction("Enquiries");
+        }
+        
         // GET: Interactions
         public ActionResult Projects()
         {

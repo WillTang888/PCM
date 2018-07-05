@@ -1851,6 +1851,7 @@
     <Content Include="Views\Contacts\EditGroup.cshtml" />
     <Content Include="Views\Contacts\_GroupInfo.cshtml" />
     <Content Include="Views\Interactions\AddEnquiry.cshtml" />
+    <Content Include="Views\Interactions\EditEnquiry.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

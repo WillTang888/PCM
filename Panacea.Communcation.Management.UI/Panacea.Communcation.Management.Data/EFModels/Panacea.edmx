@@ -694,12 +694,12 @@
             <End Role="RefStatus" EntitySet="RefStatus" />
             <End Role="Groups" EntitySet="Groups" />
           </AssociationSet>
-          <EntitySet Name="Enquiry" EntityType="PCMModel.Enquiry" />
           <EntitySet Name="RefEnquiryStatus" EntityType="PCMModel.RefEnquiryStatus" />
           <EntitySet Name="RefEnquiryType" EntityType="PCMModel.RefEnquiryType" />
           <EntitySet Name="RefOutcome" EntityType="PCMModel.RefOutcome" />
           <EntitySet Name="RefResponseMethod" EntityType="PCMModel.RefResponseMethod" />
           <EntitySet Name="Team" EntityType="PCMModel.Team" />
+          <EntitySet Name="Enquiry" EntityType="PCMModel.Enquiry" />
           <AssociationSet Name="FK_Enquiry_Contacts" Association="PCMModel.FK_Enquiry_Contacts">
             <End Role="Contacts" EntitySet="Contacts" />
             <End Role="Enquiry" EntitySet="Enquiry" />
@@ -724,15 +724,15 @@
             <End Role="RefResponseMethod" EntitySet="RefResponseMethod" />
             <End Role="Enquiry" EntitySet="Enquiry" />
           </AssociationSet>
-          <AssociationSet Name="FK_Enquiry_Team" Association="PCMModel.FK_Enquiry_Team">
-            <End Role="Team" EntitySet="Team" />
-            <End Role="Enquiry" EntitySet="Enquiry" />
-          </AssociationSet>
           <AssociationSet Name="FK_Enquiry_RefStatus" Association="PCMModel.FK_Enquiry_RefStatus">
             <End Role="RefStatus" EntitySet="RefStatus" />
             <End Role="Enquiry" EntitySet="Enquiry" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="FK_Enquiry_Team" Association="PCMModel.FK_Enquiry_Team">
+            <End Role="Team" EntitySet="Team" />
+            <End Role="Enquiry" EntitySet="Enquiry" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Contacts">
           <Key>
             <PropertyRef Name="Id" />
@@ -855,39 +855,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Enquiry">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FkContactId" Type="Int32" Nullable="false" />
-          <Property Name="FkOrganisationId" Type="Int32" Nullable="false" />
-          <Property Name="Summary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="InternalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Responder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnedDate" Type="DateTime" Precision="3" />
-          <Property Name="FkRefResponseMethodId" Type="Int32" />
-          <Property Name="FkRefOutcomeId" Type="Int32" />
-          <Property Name="FkRefEnquiryStatusId" Type="Int32" Nullable="false" />
-          <Property Name="FkUserId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="FkTeamId" Type="Int32" Nullable="false" />
-          <Property Name="FkEnquiryTypeId" Type="Int32" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="DeadlineDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FkRelatedProjectId" Type="Int32" />
-          <Property Name="FkRelatedReleaseId" Type="Int32" />
-          <NavigationProperty Name="Contacts" Relationship="PCMModel.FK_Enquiry_Contacts" FromRole="Enquiry" ToRole="Contacts" />
-          <NavigationProperty Name="RefEnquiryType" Relationship="PCMModel.FK_Enquiry_EnquiryType" FromRole="Enquiry" ToRole="RefEnquiryType" />
-          <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Enquiry_Organisations" FromRole="Enquiry" ToRole="Organisations" />
-          <NavigationProperty Name="RefEnquiryStatus" Relationship="PCMModel.FK_Enquiry_RefEnquiryStatus" FromRole="Enquiry" ToRole="RefEnquiryStatus" />
-          <NavigationProperty Name="RefOutcome" Relationship="PCMModel.FK_Enquiry_RefOutcome" FromRole="Enquiry" ToRole="RefOutcome" />
-          <NavigationProperty Name="RefResponseMethod" Relationship="PCMModel.FK_Enquiry_RefResponseMethod" FromRole="Enquiry" ToRole="RefResponseMethod" />
-          <NavigationProperty Name="Team" Relationship="PCMModel.FK_Enquiry_Team" FromRole="Enquiry" ToRole="Team" />
-          <Property Name="FkRefStatusId" Type="Int32" />
-          <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Enquiry_RefStatus" FromRole="Enquiry" ToRole="RefStatus" />
-        </EntityType>
         <EntityType Name="RefEnquiryStatus">
           <Key>
             <PropertyRef Name="Id" />
@@ -928,6 +895,39 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Enquiry" Relationship="PCMModel.FK_Enquiry_Team" FromRole="Team" ToRole="Enquiry" />
+        </EntityType>
+        <EntityType Name="Enquiry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FkContactId" Type="Int32" Nullable="false" />
+          <Property Name="FkOrganisationId" Type="Int32" Nullable="false" />
+          <Property Name="Summary" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InternalNotes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Response" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Responder" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ReturnedDate" Type="DateTime" Precision="3" />
+          <Property Name="FkRefResponseMethodId" Type="Int32" />
+          <Property Name="FkRefOutcomeId" Type="Int32" />
+          <Property Name="FkRefEnquiryStatusId" Type="Int32" Nullable="false" />
+          <Property Name="FkUserId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FkTeamId" Type="Int32" Nullable="false" />
+          <Property Name="FkEnquiryTypeId" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="DeadlineDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FkRelatedProjectId" Type="Int32" />
+          <Property Name="FkRelatedReleaseId" Type="Int32" />
+          <Property Name="FkRefStatusId" Type="Int32" />
+          <NavigationProperty Name="Contacts" Relationship="PCMModel.FK_Enquiry_Contacts" FromRole="Enquiry" ToRole="Contacts" />
+          <NavigationProperty Name="RefEnquiryType" Relationship="PCMModel.FK_Enquiry_EnquiryType" FromRole="Enquiry" ToRole="RefEnquiryType" />
+          <NavigationProperty Name="Organisations" Relationship="PCMModel.FK_Enquiry_Organisations" FromRole="Enquiry" ToRole="Organisations" />
+          <NavigationProperty Name="RefEnquiryStatus" Relationship="PCMModel.FK_Enquiry_RefEnquiryStatus" FromRole="Enquiry" ToRole="RefEnquiryStatus" />
+          <NavigationProperty Name="RefOutcome" Relationship="PCMModel.FK_Enquiry_RefOutcome" FromRole="Enquiry" ToRole="RefOutcome" />
+          <NavigationProperty Name="RefResponseMethod" Relationship="PCMModel.FK_Enquiry_RefResponseMethod" FromRole="Enquiry" ToRole="RefResponseMethod" />
+          <NavigationProperty Name="RefStatus" Relationship="PCMModel.FK_Enquiry_RefStatus" FromRole="Enquiry" ToRole="RefStatus" />
+          <NavigationProperty Name="Team" Relationship="PCMModel.FK_Enquiry_Team" FromRole="Enquiry" ToRole="Team" />
         </EntityType>
         <Association Name="FK_Enquiry_Contacts">
           <End Type="PCMModel.Contacts" Role="Contacts" Multiplicity="1" />
@@ -1001,18 +1001,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Enquiry_Team">
-          <End Type="PCMModel.Team" Role="Team" Multiplicity="1" />
-          <End Type="PCMModel.Enquiry" Role="Enquiry" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Enquiry">
-              <PropertyRef Name="FkTeamId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Enquiry_RefStatus">
           <End Type="PCMModel.RefStatus" Role="RefStatus" Multiplicity="0..1" />
           <End Type="PCMModel.Enquiry" Role="Enquiry" Multiplicity="*" />
@@ -1025,7 +1013,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_Enquiry_Team">
+          <End Type="PCMModel.Team" Role="Team" Multiplicity="1" />
+          <End Type="PCMModel.Enquiry" Role="Enquiry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Enquiry">
+              <PropertyRef Name="FkTeamId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1166,32 +1166,6 @@
               <ScalarProperty Name="Id" ColumnName="FkGroupId" />
             </EndProperty>
           </AssociationSetMapping>
-          <EntitySetMapping Name="Enquiry">
-            <EntityTypeMapping TypeName="PCMModel.Enquiry">
-              <MappingFragment StoreEntitySet="Enquiry">
-                <ScalarProperty Name="FkRefStatusId" ColumnName="FkRefStatusId" />
-                <ScalarProperty Name="FkRelatedReleaseId" ColumnName="FkRelatedReleaseId" />
-                <ScalarProperty Name="FkRelatedProjectId" ColumnName="FkRelatedProjectId" />
-                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="FkEnquiryTypeId" ColumnName="FkEnquiryTypeId" />
-                <ScalarProperty Name="FkTeamId" ColumnName="FkTeamId" />
-                <ScalarProperty Name="FkUserId" ColumnName="FkUserId" />
-                <ScalarProperty Name="FkRefEnquiryStatusId" ColumnName="FkRefEnquiryStatusId" />
-                <ScalarProperty Name="FkRefOutcomeId" ColumnName="FkRefOutcomeId" />
-                <ScalarProperty Name="FkRefResponseMethodId" ColumnName="FkRefResponseMethodId" />
-                <ScalarProperty Name="ReturnedDate" ColumnName="ReturnedDate" />
-                <ScalarProperty Name="Responder" ColumnName="Responder" />
-                <ScalarProperty Name="Response" ColumnName="Response" />
-                <ScalarProperty Name="InternalNotes" ColumnName="InternalNotes" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Summary" ColumnName="Summary" />
-                <ScalarProperty Name="FkOrganisationId" ColumnName="FkOrganisationId" />
-                <ScalarProperty Name="FkContactId" ColumnName="FkContactId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="RefEnquiryStatus">
             <EntityTypeMapping TypeName="PCMModel.RefEnquiryStatus">
               <MappingFragment StoreEntitySet="RefEnquiryStatus">
@@ -1229,6 +1203,32 @@
               <MappingFragment StoreEntitySet="Team">
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enquiry">
+            <EntityTypeMapping TypeName="PCMModel.Enquiry">
+              <MappingFragment StoreEntitySet="Enquiry">
+                <ScalarProperty Name="FkRefStatusId" ColumnName="FkRefStatusId" />
+                <ScalarProperty Name="FkRelatedReleaseId" ColumnName="FkRelatedReleaseId" />
+                <ScalarProperty Name="FkRelatedProjectId" ColumnName="FkRelatedProjectId" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FkEnquiryTypeId" ColumnName="FkEnquiryTypeId" />
+                <ScalarProperty Name="FkTeamId" ColumnName="FkTeamId" />
+                <ScalarProperty Name="FkUserId" ColumnName="FkUserId" />
+                <ScalarProperty Name="FkRefEnquiryStatusId" ColumnName="FkRefEnquiryStatusId" />
+                <ScalarProperty Name="FkRefOutcomeId" ColumnName="FkRefOutcomeId" />
+                <ScalarProperty Name="FkRefResponseMethodId" ColumnName="FkRefResponseMethodId" />
+                <ScalarProperty Name="ReturnedDate" ColumnName="ReturnedDate" />
+                <ScalarProperty Name="Responder" ColumnName="Responder" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="InternalNotes" ColumnName="InternalNotes" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="FkOrganisationId" ColumnName="FkOrganisationId" />
+                <ScalarProperty Name="FkContactId" ColumnName="FkContactId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
